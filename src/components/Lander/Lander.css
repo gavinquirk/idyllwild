@@ -1,0 +1,94 @@
+.Lander {
+  grid-row: 1;
+  grid-column: 1 / -1;
+
+  margin-bottom: 50px;
+  height: 100%;
+  max-height: 100%;
+  min-height: 100%;
+}
+
+.Lander .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  height: 100%;
+  gap: 20px;
+  /* animation: resize 10000ms ease infinite both; */
+}
+
+.box {
+  --color2: 36;
+  --color2: 76;
+  --delay: 0ms;
+  background-color: hsl(var(--color1), 100%, 60%);
+  animation: colorChange 20000ms ease var(--delay) infinite both;
+
+  font-size: 30px;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box:nth-child(4n - 2) {
+  --delay: 1000ms;
+}
+
+.box:nth-child(4n) {
+  --delay: 2000ms;
+}
+
+/* Animations */
+
+/* Color Change */
+@keyframes colorChange {
+  0% {
+    background-color: hsl(36, 100%, 64%);
+  }
+
+  25% {
+    background-color: hsl(91, 98%, 62%);
+  }
+
+  50% {
+    background-color: hsl(206, 100%, 64%);
+  }
+
+  75% {
+    background-color: hsl(305, 100%, 64%);
+  }
+
+  100% {
+    background-color: hsl(36, 100%, 64%);
+  }
+}
+
+/* Resize */
+@keyframes resize {
+  0% {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+
+  25% {
+    grid-template-columns: 1fr 2fr 3fr;
+    grid-template-rows: 1fr 2fr 3fr;
+  }
+
+  50% {
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-rows: 1fr 5fr 1fr;
+  }
+
+  75% {
+    grid-template-columns: 3fr 2fr 1fr;
+    grid-template-rows: 3fr 2fr 1fr;
+  }
+
+  100% {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+}

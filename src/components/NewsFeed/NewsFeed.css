@@ -1,0 +1,35 @@
+/* .Newsfeed {
+  & .article {
+    margin-bottom: 10px;
+
+    &--heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    &--date {
+      font-size: 12px;
+      margin-right: 10px;
+    }
+  }
+} */
+.NewsFeed {
+  grid-row: 2;
+  grid-column: 1 / 11;
+}
+
+.NewsFeed .article {
+  margin-bottom: 10px;
+}
+
+.NewsFeed .article--heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.NewsFeed .article--date {
+  font-size: 12px;
+  margin-right: 10px;
+}
