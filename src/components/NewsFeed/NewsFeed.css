@@ -5,6 +5,7 @@
   transition: all 1s ease-in-out;
 }
 
+/* TODO: outsource heading-span to app.css */
 .NewsFeed .heading-span {
   display: flex;
   align-items: center;
