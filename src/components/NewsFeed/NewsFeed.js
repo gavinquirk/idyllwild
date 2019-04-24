@@ -5,8 +5,18 @@ import './NewsFeed.css';
 export default class NewsFeed extends Component {
   render() {
     return (
-      <div className='NewsFeed'>
-        <h1 className='heading heading-primary underline'>News</h1>
+      <div
+        className='NewsFeed'
+        style={this.props.expandState ? { width: '20%' } : { width: '80%' }}
+      >
+        <span className='underline'>
+          <h1
+            className='heading heading-primary'
+            onClick={this.props.expandEventsHandler}
+          >
+            News
+          </h1>
+        </span>
 
         <div className='article'>
           <div className='article--heading'>

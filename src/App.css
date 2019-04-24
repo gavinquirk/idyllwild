@@ -10,11 +10,14 @@
 }
 
 .heading-primary {
-  margin-bottom: 20px;
+  cursor: pointer;
+  display: inline;
 }
 
 .underline {
   border-bottom: 2px solid var(--font-light);
+  display: block;
+  margin-bottom: 20px;
 }
 
 /* Media Queries */

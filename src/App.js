@@ -6,13 +6,15 @@ import Lander from './components/Lander/Lander';
 import NewsFeed from './components/NewsFeed/NewsFeed';
 import Events from './components/Events/Events';
 
+import './components/ContentContainer/ContentContainer';
+import ContentContainer from './components/ContentContainer/ContentContainer';
+
 function App() {
   return (
     <div className='App'>
       <Layout>
         <Lander />
-        <NewsFeed />
-        <Events />
+        <ContentContainer />
       </Layout>
     </div>
   );

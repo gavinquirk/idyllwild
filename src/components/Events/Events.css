@@ -1,6 +1,7 @@
 .Events {
-  grid-row: 2;
-  grid-column: 11 / 13;
+  /* width: 20%; */
+
+  transition: all 1s ease-in-out;
 }
 
 .Events .event {
