@@ -9,7 +9,7 @@ import AdminPage from './pages/AdminPage/AdminPage';
 import SignInPage from './pages/SignInPage/SignInPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
-import PasswordForgetPage from './pages/PasswordForgetPage';
+import PasswordForgetPage from './pages/PasswordForgetPage/PasswordForgetPage';
 
 import * as ROUTES from './constants/routes';
 
