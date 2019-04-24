@@ -20,6 +20,11 @@
   transition: all 0.5s;
 }
 
+.NewsFeed .heading-span i:hover {
+  /* animation: pulsate 1s linear infinite; */
+  transform: translateZ(0) scale(1.1);
+}
+
 .NewsFeed .article {
   margin-bottom: 10px;
 }

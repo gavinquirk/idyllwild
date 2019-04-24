@@ -17,6 +17,10 @@
   transition: all 0.5s;
 }
 
+.Events .heading-span i:hover {
+  transform: translateZ(0) scale(1.1);
+}
+
 .Events .event {
   margin-bottom: 10px;
 }
