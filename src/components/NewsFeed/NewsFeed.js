@@ -9,13 +9,13 @@ export default class NewsFeed extends Component {
         className='NewsFeed'
         style={this.props.expandState ? { width: '20%' } : { width: '80%' }}
       >
-        <span className='underline'>
-          <h1
-            className='heading heading-primary'
+        <span className='heading-span underline'>
+          <h1 className='heading heading-primary'>News</h1>
+          <i
+            class='far fa-plus-square'
+            style={this.props.expandState ? { opacity: '1' } : { opacity: '0' }}
             onClick={this.props.expandEventsHandler}
-          >
-            News
-          </h1>
+          />
         </span>
 
         <div className='article'>

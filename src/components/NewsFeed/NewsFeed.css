@@ -5,6 +5,21 @@
   transition: all 1s ease-in-out;
 }
 
+.NewsFeed .heading-span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  transition: all 1s;
+}
+
+.NewsFeed .heading-span i {
+  font-size: 30px;
+  cursor: pointer;
+
+  transition: all 0.5s;
+}
+
 .NewsFeed .article {
   margin-bottom: 10px;
 }

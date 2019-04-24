@@ -4,6 +4,19 @@
   transition: all 1s ease-in-out;
 }
 
+.Events .heading-span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Events .heading-span i {
+  font-size: 30px;
+  cursor: pointer;
+
+  transition: all 0.5s;
+}
+
 .Events .event {
   margin-bottom: 10px;
 }
