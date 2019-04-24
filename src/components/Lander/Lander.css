@@ -40,6 +40,13 @@
   --delay: 2000ms;
 }
 
+/* Media Queries */
+@media only screen and (max-width: 600px) {
+  .Lander .grid {
+    grid-gap: 10px;
+  }
+}
+
 /* Animations */
 
 /* Color Change */

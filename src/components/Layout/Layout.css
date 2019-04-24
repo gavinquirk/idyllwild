@@ -6,3 +6,10 @@
   grid-template-columns: repeat(12, 1fr);
   grid-gap: 40px;
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    grid-template-rows: 50vh repeat(2, auto);
+    grid-gap: 20px;
+  }
+}

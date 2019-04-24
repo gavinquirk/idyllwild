@@ -2,6 +2,7 @@
 #title {
   text-transform: uppercase;
   font-family: 'Titillium Web', sans-serif;
+  padding: 20px;
 }
 
 .heading {
@@ -14,4 +15,19 @@
 
 .underline {
   border-bottom: 2px solid var(--font-light);
+}
+
+/* Media Queries */
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 12px;
+  }
+
+  #title {
+    font-size: 30px;
+  }
+
+  .heading-primary {
+    font-size: 25px;
+  }
 }
