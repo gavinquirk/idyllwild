@@ -1,13 +1,26 @@
 import React, { Component } from 'react';
 
+import { AuthUserContext, withAuthorization } from '../../components/Session';
+
 import './DashboardPage.css';
 
-export default class DashboardPage extends Component {
+class DashboardPage extends Component {
   render() {
     return (
-      <div className='DashboardPage'>
-        <h1>Dashboard Page</h1>
-      </div>
+      <AuthUserContext.Consumer>
+        {authUser => (
+          <div>
+            <h1>Account: {authUser.email}</h1>
+            {/* <PasswordForgetForm />
+            <PasswordChangeForm /> */}
+          </div>
+        )}
+      </AuthUserContext.Consumer>
     );
   }
 }
+
+// Condition for granting access -- if authUser is not null
+const condition = authUser => !!authUser;
+
+export default withAuthorization(condition)(DashboardPage);

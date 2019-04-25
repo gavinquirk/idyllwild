@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+// import React from 'react';
 
-import './AdminPage.css';
+// import * as ROLES from '../../constants/roles';
 
-export default class AdminPage extends Component {
-  render() {
-    return (
-      <div className='AdminPage'>
-        <h1>Admin Page</h1>
-      </div>
-    );
-  }
-}
+// const AdminPage = () => (
+//   <div>
+//     <h1>Admin</h1>
+//     <p>Restricted area! Only users with the admin role are authorized.</p>
+//   </div>
+// );
+
+// const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN];
+
+// export default withAuthorization(condition)(AdminPage);
