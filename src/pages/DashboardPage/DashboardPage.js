@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import { compose } from 'recompose';
 
-import { AuthUserContext, withAuthorization } from '../../components/Session';
+import {
+  AuthUserContext,
+  withAuthorization,
+  withEmailVerification
+} from '../../components/Session';
 
 import './DashboardPage.css';
 
@@ -23,4 +28,7 @@ class DashboardPage extends Component {
 // Condition for granting access -- if authUser is not null
 const condition = authUser => !!authUser;
 
-export default withAuthorization(condition)(DashboardPage);
+export default compose(
+  withEmailVerification,
+  withAuthorization(condition)
+)(DashboardPage);

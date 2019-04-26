@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { compose } from 'recompose';
 
 import { withFirebase } from '../../components/Firebase';
-import { withAuthorization } from '../../components/Session';
+import {
+  withAuthorization,
+  withEmailVerification
+} from '../../components/Session';
 import * as ROLES from '../../constants/roles';
 
 class AdminPage extends Component {
@@ -70,6 +73,7 @@ const UserList = ({ users }) => (
 const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN]; // If user is authenticated, and admin role is not null
 
 export default compose(
+  withEmailVerification,
   withAuthorization(condition),
   withFirebase
 )(AdminPage);
