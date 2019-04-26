@@ -85,7 +85,7 @@ class UserItemBase extends Component {
   state = {
     loading: false,
     user: null,
-    ...props.location.state
+    ...this.props.location.state
   };
 
   componentDidMount() {
