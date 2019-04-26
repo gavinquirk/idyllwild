@@ -67,7 +67,7 @@ class UserListBase extends Component {
                 <Link
                   to={{
                     pathname: `${ROUTES.ADMIN}/${user.uid}`,
-                    state: { user }
+                    state: { user } // Pass user data to details component
                   }}
                 >
                   Details
@@ -82,23 +82,21 @@ class UserListBase extends Component {
 }
 
 class UserItemBase extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loading: false,
-      user: null,
-      ...props.location.state
-    };
-  }
+  state = {
+    loading: false,
+    user: null,
+    ...props.location.state
+  };
 
   componentDidMount() {
+    // If user state is passed, don't query for user
     if (this.state.user) {
       return;
     }
 
     this.setState({ loading: true });
 
+    // Else, query db for user data
     this.props.firebase
       .user(this.props.match.params.id)
       .on('value', snapshot => {
