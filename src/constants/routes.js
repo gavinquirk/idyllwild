@@ -4,3 +4,4 @@ export const SIGN_IN = '/signin';
 export const ADMIN = '/admin';
 export const DASHBOARD = '/dashboard';
 export const PASSWORD_FORGET = '/pw-forget';
+export const ADMIN_DETAILS = '/admin/:id';
