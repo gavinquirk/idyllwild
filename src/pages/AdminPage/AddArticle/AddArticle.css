@@ -1,0 +1,58 @@
+.AddArticle {
+  grid-column: 4 / 10;
+}
+
+.AddArticle-container {
+  /* text-align: center;
+  display: flex;
+  flex-direction: column; */
+}
+
+.AddArticle-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.AddArticle-container textarea {
+  font-size: inherit;
+  min-height: 100px;
+
+  padding: 5px 10px;
+  border-radius: 5px;
+
+  width: 100%;
+
+  border: none;
+
+  margin: 5px 0;
+  outline: none;
+}
+
+.AddArticle-container label {
+  padding-bottom: 5px;
+}
+
+.AddArticle-container input {
+  padding: 5px 10px;
+  border-radius: 5px;
+
+  width: 100%;
+
+  border: none;
+
+  margin: 5px 0;
+  outline: none;
+}
+
+.AddArticle-container form button {
+  padding: 10px 30px;
+
+  margin: 15px 0;
+  background-color: var(--color-green-vibrant);
+
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+  align-self: center;
+}
