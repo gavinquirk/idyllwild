@@ -7,9 +7,14 @@ import * as ROUTES from '../../constants/routes';
 import './PasswordForgetPage.css';
 
 const PasswordForgetPage = () => (
-  <div>
-    <h1>PasswordForget</h1>
-    <PasswordForgetForm />
+  <div className='PasswordForgetPage'>
+    <div className='PasswordForgetPage-container'>
+      <h1 className='heading heading-primary underline'>
+        Forgot Your Password?
+      </h1>
+      <p>Enter your email to reset your password</p>
+      <PasswordForgetForm />
+    </div>
   </div>
 );
 
