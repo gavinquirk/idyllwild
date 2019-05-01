@@ -6,6 +6,8 @@ import { withFirebase } from '../../components/Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 
+import './SignUpPage.css';
+
 const SignUpPage = () => (
   <div>
     <h1>SignUp</h1>
@@ -132,9 +134,9 @@ class SignUpFormBase extends Component {
 }
 
 const SignUpLink = () => (
-  <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-  </p>
+  <button className='SignUpLink'>
+    <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+  </button>
 );
 
 const SignUpForm = compose(

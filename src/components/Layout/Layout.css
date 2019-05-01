@@ -2,9 +2,9 @@
   margin: 5%;
 
   display: grid;
-  grid-template-rows: 80vh auto;
+  /* grid-auto-rows:  */
   grid-template-columns: repeat(12, 1fr);
-  grid-gap: 40px;
+  grid-gap: 20px;
 }
 
 @media only screen and (max-width: 600px) {

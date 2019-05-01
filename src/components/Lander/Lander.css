@@ -52,23 +52,23 @@
 /* Color Change */
 @keyframes colorChange {
   0% {
-    background-color: hsl(36, 100%, 64%);
+    background-color: var(--color-orange-vibrant);
   }
 
   25% {
-    background-color: hsl(91, 98%, 62%);
+    background-color: var(--color-green-vibrant);
   }
 
   50% {
-    background-color: hsl(206, 100%, 64%);
+    background-color: var(--color-blue-vibrant);
   }
 
   75% {
-    background-color: hsl(305, 100%, 64%);
+    background-color: var(--color-violet-vibrant);
   }
 
   100% {
-    background-color: hsl(36, 100%, 64%);
+    background-color: var(--color-orange-vibrant);
   }
 }
 

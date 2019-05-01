@@ -6,8 +6,10 @@ import SignOutButton from '../SignOut/SignOutButton';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 
+import './Navigation.css';
+
 const Navigation = () => (
-  <div>
+  <div className='Navigation'>
     <AuthUserContext.Consumer>
       {authUser =>
         authUser ? (
@@ -21,7 +23,7 @@ const Navigation = () => (
 );
 
 const NavigationAuth = ({ authUser }) => (
-  <ul>
+  <ul className='NavigationList'>
     <li>
       <Link to={ROUTES.LANDING}>Landing</Link>
     </li>
@@ -40,7 +42,7 @@ const NavigationAuth = ({ authUser }) => (
 );
 
 const NavigationNonAuth = () => (
-  <ul>
+  <ul className='NavigationList'>
     <li>
       <Link to={ROUTES.LANDING}>Landing</Link>
     </li>

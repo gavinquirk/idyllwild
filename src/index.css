@@ -1,5 +1,9 @@
 :root {
   --font-light: rgb(238, 238, 238);
+  --color-violet-vibrant: hsl(305, 100%, 64%);
+  --color-green-vibrant: hsl(91, 98%, 62%);
+  --color-orange-vibrant: hsl(36, 100%, 64%);
+  --color-blue-vibrant: hsl(206, 100%, 64%);
 }
 
 * {

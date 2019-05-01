@@ -7,12 +7,16 @@ import { PasswordForgetLink } from '../PasswordForgetPage/PasswordForgetPage';
 import { withFirebase } from '../../components/Firebase';
 import * as ROUTES from '../../constants/routes';
 
+import './SignInPage.css';
+
 const SignInPage = () => (
-  <div>
-    <h1>SignIn</h1>
-    <SignInForm />
-    <SignUpLink />
-    <PasswordForgetLink />
+  <div className='SignInPage'>
+    <div className='SignInPage-container'>
+      <h1 className='heading heading-primary underline'>SignIn</h1>
+      <SignInForm />
+      <SignUpLink />
+      <PasswordForgetLink />
+    </div>
   </div>
 );
 
