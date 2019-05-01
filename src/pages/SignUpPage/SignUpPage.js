@@ -9,9 +9,11 @@ import * as ROLES from '../../constants/roles';
 import './SignUpPage.css';
 
 const SignUpPage = () => (
-  <div>
-    <h1>SignUp</h1>
-    <SignUpForm />
+  <div className='SignUpPage'>
+    <div className='SignUpPage-container'>
+      <h1 className='heading heading-primary underline'>Sign Up</h1>
+      <SignUpForm />
+    </div>
   </div>
 );
 

@@ -12,7 +12,7 @@ import './SignInPage.css';
 const SignInPage = () => (
   <div className='SignInPage'>
     <div className='SignInPage-container'>
-      <h1 className='heading heading-primary underline'>SignIn</h1>
+      <h1 className='heading heading-primary underline'>Sign In</h1>
       <SignInForm />
       <SignUpLink />
       <PasswordForgetLink />
