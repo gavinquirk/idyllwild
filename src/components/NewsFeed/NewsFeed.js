@@ -5,14 +5,24 @@ import './NewsFeed.css';
 
 class NewsFeedBase extends Component {
   state = {
-    articles: ['test'],
+    articles: [],
     loading: false
   };
 
   componentDidMount() {
     this.onListenForArticles();
-    console.log(new Date(1452488445471));
   }
+
+  formatTime = timestamp => {
+    var options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    };
+    const formattedDate = new Date(timestamp);
+    return formattedDate.toLocaleDateString('en-US', options);
+  };
 
   onListenForArticles() {
     this.setState({ loading: true });
@@ -29,8 +39,6 @@ class NewsFeedBase extends Component {
             ...articleObject[key],
             uid: key
           }));
-          // TODO: Format timestamps
-
           this.setState({
             articles: articleList,
             loading: false
@@ -62,10 +70,12 @@ class NewsFeedBase extends Component {
 
         {articles.length >= 1 ? (
           articles.map(article => (
-            <div className='article' key={article.title}>
+            <div key={article.uid} className='article'>
               <div className='article--heading'>
                 <h3 className='heading'>{article.title}</h3>
-                <span className='article--date'>{article.createdAt}</span>
+                <span className='article--date'>
+                  {this.formatTime(article.createdAt)}
+                </span>
               </div>
               <div className='article--content'>
                 <p>{article.text}</p>

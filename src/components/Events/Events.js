@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import './Events.css';
 
 export default class Events extends Component {
-  componentDidMount() {
-    console.log(this.props.expandState);
-  }
+  // componentDidMount() {
+  //   console.log(this.props.expandState);
+  // }
 
   render() {
     return (
