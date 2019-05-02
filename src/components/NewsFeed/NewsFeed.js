@@ -1,9 +1,50 @@
 import React, { Component } from 'react';
+import { withFirebase } from '../Firebase';
 
 import './NewsFeed.css';
 
-export default class NewsFeed extends Component {
+class NewsFeedBase extends Component {
+  state = {
+    articles: ['test'],
+    loading: false
+  };
+
+  componentDidMount() {
+    this.onListenForArticles();
+    console.log(new Date(1452488445471));
+  }
+
+  onListenForArticles() {
+    this.setState({ loading: true });
+    this.props.firebase
+      .articles()
+      // .orderByChild('createdAt')
+      // .limitToLast(this.state.limit)
+      .on('value', snapshot => {
+        const articleObject = snapshot.val();
+
+        if (articleObject) {
+          // Convert articleObject into array
+          const articleList = Object.keys(articleObject).map(key => ({
+            ...articleObject[key],
+            uid: key
+          }));
+          // TODO: Format timestamps
+
+          this.setState({
+            articles: articleList,
+            loading: false
+          });
+        } else {
+          this.setState({ articles: null, loading: false });
+        }
+      });
+  }
+
   render() {
+    // Destructure articles from state
+    const { articles } = this.state;
+
     return (
       <div
         className='NewsFeed'
@@ -12,115 +53,33 @@ export default class NewsFeed extends Component {
         <span className='heading-span underline'>
           <h1 className='heading heading-primary'>News</h1>
           <i
-            class='far fa-plus-square'
+            className='far fa-plus-square'
             style={this.props.expandState ? { opacity: '1' } : { opacity: '0' }}
             onClick={this.props.expandEventsHandler}
           />
         </span>
+        {/* Articles Section */}
 
-        <div className='article'>
-          <div className='article--heading'>
-            <h3 className='heading'>Article Title</h3>
-            <span className='article--date'>11/11/11</span>
-          </div>
-          <div className='article--content'>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-              assumenda, quibusdam facilis magni quam odit temporibus officia
-              consequatur commodi quasi voluptatibus. Tenetur facilis minima
-              quam repudiandae suscipit? Neque voluptatibus odit dolorum saepe
-              dicta blanditiis perferendis beatae laboriosam quas mollitia
-              voluptas inventore delectus quia voluptate excepturi, sint libero!
-              Doloremque, cum nam!
-            </p>
-          </div>
-        </div>
-        <div className='article'>
-          <div className='article--heading'>
-            <h3 className='heading'>Article Title</h3>
-            <span className='article--date'>11/11/11</span>
-          </div>
-          <div className='article--content'>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-              assumenda, quibusdam facilis magni quam odit temporibus officia
-              consequatur commodi quasi voluptatibus. Tenetur facilis minima
-              quam repudiandae suscipit? Neque voluptatibus odit dolorum saepe
-              dicta blanditiis perferendis beatae laboriosam quas mollitia
-              voluptas inventore delectus quia voluptate excepturi, sint libero!
-              Doloremque, cum nam!
-            </p>
-          </div>
-        </div>
-        <div className='article'>
-          <div className='article--heading'>
-            <h3 className='heading'>Article Title</h3>
-            <span className='article--date'>11/11/11</span>
-          </div>
-          <div className='article--content'>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-              assumenda, quibusdam facilis magni quam odit temporibus officia
-              consequatur commodi quasi voluptatibus. Tenetur facilis minima
-              quam repudiandae suscipit? Neque voluptatibus odit dolorum saepe
-              dicta blanditiis perferendis beatae laboriosam quas mollitia
-              voluptas inventore delectus quia voluptate excepturi, sint libero!
-              Doloremque, cum nam!
-            </p>
-          </div>
-        </div>
-        <div className='article'>
-          <div className='article--heading'>
-            <h3 className='heading'>Article Title</h3>
-            <span className='article--date'>11/11/11</span>
-          </div>
-          <div className='article--content'>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-              assumenda, quibusdam facilis magni quam odit temporibus officia
-              consequatur commodi quasi voluptatibus. Tenetur facilis minima
-              quam repudiandae suscipit? Neque voluptatibus odit dolorum saepe
-              dicta blanditiis perferendis beatae laboriosam quas mollitia
-              voluptas inventore delectus quia voluptate excepturi, sint libero!
-              Doloremque, cum nam!
-            </p>
-          </div>
-        </div>
-        <div className='article'>
-          <div className='article--heading'>
-            <h3 className='heading'>Article Title</h3>
-            <span className='article--date'>11/11/11</span>
-          </div>
-          <div className='article--content'>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-              assumenda, quibusdam facilis magni quam odit temporibus officia
-              consequatur commodi quasi voluptatibus. Tenetur facilis minima
-              quam repudiandae suscipit? Neque voluptatibus odit dolorum saepe
-              dicta blanditiis perferendis beatae laboriosam quas mollitia
-              voluptas inventore delectus quia voluptate excepturi, sint libero!
-              Doloremque, cum nam!
-            </p>
-          </div>
-        </div>
-        <div className='article'>
-          <div className='article--heading'>
-            <h3 className='heading'>Article Title</h3>
-            <span className='article--date'>11/11/11</span>
-          </div>
-          <div className='article--content'>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-              assumenda, quibusdam facilis magni quam odit temporibus officia
-              consequatur commodi quasi voluptatibus. Tenetur facilis minima
-              quam repudiandae suscipit? Neque voluptatibus odit dolorum saepe
-              dicta blanditiis perferendis beatae laboriosam quas mollitia
-              voluptas inventore delectus quia voluptate excepturi, sint libero!
-              Doloremque, cum nam!
-            </p>
-          </div>
-        </div>
+        {articles.length >= 1 ? (
+          articles.map(article => (
+            <div className='article' key={article.title}>
+              <div className='article--heading'>
+                <h3 className='heading'>{article.title}</h3>
+                <span className='article--date'>{article.createdAt}</span>
+              </div>
+              <div className='article--content'>
+                <p>{article.text}</p>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div>Loading</div>
+        )}
       </div>
     );
   }
 }
+
+const NewsFeed = withFirebase(NewsFeedBase);
+
+export default NewsFeed;
