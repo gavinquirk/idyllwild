@@ -28,17 +28,19 @@ class NewsFeedBase extends Component {
     this.setState({ loading: true });
     this.props.firebase
       .articles()
-      // .orderByChild('createdAt')
+      .orderByChild('createdAt')
       // .limitToLast(this.state.limit)
       .on('value', snapshot => {
         const articleObject = snapshot.val();
 
         if (articleObject) {
           // Convert articleObject into array
-          const articleList = Object.keys(articleObject).map(key => ({
-            ...articleObject[key],
-            uid: key
-          }));
+          const articleList = Object.keys(articleObject)
+            .map(key => ({
+              ...articleObject[key],
+              uid: key
+            }))
+            .reverse();
           this.setState({
             articles: articleList,
             loading: false
