@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 
 import './Events.css';
-
-// style={this.props.expandState ? { width: '80%' } : { width: '20%' }}
 
 class EventsBase extends Component {
   state = {
@@ -28,10 +27,10 @@ class EventsBase extends Component {
 
   onListenForEvents() {
     this.setState({ loading: true });
+    // Listen for event data
     this.props.firebase
       .events()
       .orderByChild('createdAt')
-      // .limitToLast(this.state.limit)
       .on('value', snapshot => {
         const eventObject = snapshot.val();
 
@@ -43,6 +42,7 @@ class EventsBase extends Component {
               uid: key
             }))
             .reverse();
+          // Send event data to state
           this.setState({
             events: eventList,
             loading: false
@@ -76,7 +76,15 @@ class EventsBase extends Component {
           events.map(event => (
             <div key={event.uid} className='event'>
               <div className='event--heading'>
-                <h3 className='heading'>{event.title}</h3>
+                <Link
+                  to={{
+                    pathname: `/events/${event.uid}`,
+                    state: { event } // Pass event data to details component
+                  }}
+                >
+                  <h3 className='heading'>{event.title}</h3>
+                </Link>
+
                 <span className='event--date'>
                   {this.formatTime(event.createdAt)}
                 </span>
