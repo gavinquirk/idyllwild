@@ -10,9 +10,7 @@ export default class ContentContainer extends Component {
   };
 
   expandEventsHandler = () => {
-    console.log('handler hit');
     this.setState({ expandEvents: !this.state.expandEvents });
-    console.log(this.state.expandEvents);
   };
 
   render() {
