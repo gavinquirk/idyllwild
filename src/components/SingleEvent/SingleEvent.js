@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 
+import MapContainer from '../MapContainer/MapContainer';
 import './SingleEvent.css';
 
 // TODO: EXTRA RENDERING HAPPENING ON THIS PAGE
@@ -43,7 +44,9 @@ class SingleEventBase extends Component {
           <>
             <h1>{event.title}</h1>
             <p>{event.text}</p>
-            <div className='map'>this is the map</div>
+            <div className='map'>
+              <MapContainer coords={{ lat: 33.6846, lng: -117.8265 }} />
+            </div>
           </>
         )}
       </div>
