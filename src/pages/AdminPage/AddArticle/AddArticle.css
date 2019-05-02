@@ -2,12 +2,6 @@
   grid-column: 4 / 10;
 }
 
-.AddArticle-container {
-  /* text-align: center;
-  display: flex;
-  flex-direction: column; */
-}
-
 .AddArticle-container form {
   display: flex;
   flex-direction: column;

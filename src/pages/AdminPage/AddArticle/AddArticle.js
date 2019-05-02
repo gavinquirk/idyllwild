@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
-
+import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../../../components/Firebase';
 import {
   withAuthorization,
@@ -16,20 +16,28 @@ import './AddArticle.css';
 class AddArticleBase extends Component {
   state = {
     text: '',
-    title: ''
+    title: '',
+    error: null
   };
 
   onCreateArticle = (event, authUser) => {
     // Post form data to articles array in DB
-    this.props.firebase.articles().push({
-      title: this.state.title,
-      text: this.state.text,
-      userId: authUser.uid,
-      createdAt: this.props.firebase.serverValue.TIMESTAMP
-    });
-    // Return title and text to empty
-    this.setState({ title: '' });
-    this.setState({ text: '' });
+    this.props.firebase
+      .articles()
+      .push({
+        title: this.state.title,
+        text: this.state.text,
+        userId: authUser.uid,
+        createdAt: this.props.firebase.serverValue.TIMESTAMP
+      })
+      .then(() => {
+        // this.setState({ title: '' });
+        // this.setState({ text: '' });
+        this.props.history.push(ROUTES.ADMIN);
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
     event.preventDefault();
   };
 
