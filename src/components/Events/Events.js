@@ -60,13 +60,13 @@ class EventsBase extends Component {
     return (
       <div
         className='Events'
-        style={this.props.expandState ? { width: '20%' } : { width: '80%' }}
+        style={this.props.expandState ? { width: '80%' } : { width: '20%' }}
       >
         <span className='heading-span underline'>
           <h1 className='heading heading-primary'>Events</h1>
           <i
             className='far fa-plus-square'
-            style={this.props.expandState ? { opacity: '1' } : { opacity: '0' }}
+            style={this.props.expandState ? { opacity: '0' } : { opacity: '1' }}
             onClick={this.props.expandEventsHandler}
           />
         </span>
