@@ -1,7 +1,8 @@
+# Idyllwild
+
 A website for the band Idyllwild.
 
-It utilizes CSS Grid, Flexbox, and CSS transitions for it's styling.
-
 Visit https://idyllwild.firebaseapp.com/ to see the live site.
+(Only original design mockup is currently live)
 
 Click on "News" or "Events" to expand the sections.
