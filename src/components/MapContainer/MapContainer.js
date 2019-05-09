@@ -4,7 +4,6 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 export class MapContainer extends Component {
   render() {
     const { coords } = this.props;
-    console.log(coords);
     return (
       <Map
         google={this.props.google}

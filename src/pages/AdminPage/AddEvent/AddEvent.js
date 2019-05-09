@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+
+import MapSearchBar from '../../../components/MapSearchBar/MapSearchBar';
 import { withFirebase } from '../../../components/Firebase';
 import {
   withAuthorization,
@@ -34,8 +37,6 @@ class AddEventBase extends Component {
         createdAt: this.props.firebase.serverValue.TIMESTAMP
       })
       .then(() => {
-        // this.setState({ title: '' });
-        // this.setState({ text: '' });
         this.props.history.push(ROUTES.ADMIN);
       })
       .catch(error => {
@@ -44,21 +45,17 @@ class AddEventBase extends Component {
     event.preventDefault();
   };
 
-  onChangeText = event => {
-    this.setState({ text: event.target.value });
+  onPlaceLoaded = place => {
+    console.log(place);
   };
-  onChangeTitle = event => {
-    this.setState({ title: event.target.value });
-  };
-  onChangeLat = event => {
-    this.setState({ lat: event.target.value });
-  };
-  onChangeLng = event => {
-    this.setState({ lng: event.target.value });
+
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
     const { text, title, lat, lng } = this.state;
+    const initialCoords = { lat: 33.6846, lng: -117.8265 }; // Irvine, California
 
     return (
       <AuthUserContext.Consumer>
@@ -72,33 +69,55 @@ class AddEventBase extends Component {
                 {/* Title */}
                 <label className='heading'>Title</label>
                 <input
+                  name='title'
                   type='text'
                   value={title}
-                  onChange={this.onChangeTitle}
+                  onChange={this.onChange}
                 />
                 {/* Text */}
                 <label className='heading'>Text</label>
                 <textarea
+                  name='text'
                   type='textarea'
                   value={text}
-                  onChange={this.onChangeText}
+                  onChange={this.onChange}
                 />
                 {/* Location */}
                 <label className='heading'>Location (coordinates)</label>
                 <input
+                  name='lat'
                   type='text'
                   value={lat}
-                  onChange={this.onChangeLat}
+                  onChange={this.onChange}
                   placeholder='Lattitude'
                 />
                 <input
+                  name='lng'
                   type='text'
                   value={lng}
-                  onChange={this.onChangeLng}
+                  onChange={this.onChange}
                   placeholder='Longitude'
                 />
+                <MapSearchBar onPlaceLoaded={this.onPlaceLoaded} />
                 <button type='submit'>Send</button>
               </form>
+              {/* <Map
+                google={this.props.google}
+                zoom={14}
+                style={{ width: '100%', height: '100%', position: 'relative' }}
+                onReady={props =>
+                  this.placesInit(props, this.autocompleteInput)
+                }
+                initialCenter={{
+                  lat: initialCoords.lat,
+                  lng: initialCoords.lng
+                }}
+              >
+                <Marker
+                  position={{ lat: initialCoords.lat, lng: initialCoords.lng }}
+                  name={'test location'}
+                />
+              </Map> */}
             </div>
           </div>
         )}
