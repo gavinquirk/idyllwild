@@ -16,6 +16,8 @@ class AddEventBase extends Component {
   state = {
     text: '',
     title: '',
+    lat: null,
+    lng: null,
     error: null
   };
 
@@ -26,6 +28,8 @@ class AddEventBase extends Component {
       .push({
         title: this.state.title,
         text: this.state.text,
+        lat: this.state.lat,
+        lng: this.state.lng,
         userId: authUser.uid,
         createdAt: this.props.firebase.serverValue.TIMESTAMP
       })
@@ -46,9 +50,15 @@ class AddEventBase extends Component {
   onChangeTitle = event => {
     this.setState({ title: event.target.value });
   };
+  onChangeLat = event => {
+    this.setState({ lat: event.target.value });
+  };
+  onChangeLng = event => {
+    this.setState({ lng: event.target.value });
+  };
 
   render() {
-    const { text, title } = this.state;
+    const { text, title, lat, lng } = this.state;
 
     return (
       <AuthUserContext.Consumer>
@@ -59,17 +69,33 @@ class AddEventBase extends Component {
                 Add New Event
               </h1>
               <form onSubmit={event => this.onCreateEvent(event, authUser)}>
+                {/* Title */}
                 <label className='heading'>Title</label>
                 <input
                   type='text'
                   value={title}
                   onChange={this.onChangeTitle}
                 />
+                {/* Text */}
                 <label className='heading'>Text</label>
                 <textarea
                   type='textarea'
                   value={text}
                   onChange={this.onChangeText}
+                />
+                {/* Location */}
+                <label className='heading'>Location (coordinates)</label>
+                <input
+                  type='text'
+                  value={lat}
+                  onChange={this.onChangeLat}
+                  placeholder='Lattitude'
+                />
+                <input
+                  type='text'
+                  value={lng}
+                  onChange={this.onChangeLng}
+                  placeholder='Longitude'
                 />
                 <button type='submit'>Send</button>
               </form>
