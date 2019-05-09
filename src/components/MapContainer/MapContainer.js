@@ -3,8 +3,6 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 import './MapContainer.css';
 
-const initialCoords = { lat: 33.6846, lng: -117.8265 }; // Irvine, California
-
 export class MapContainer extends Component {
   state = {
     showingInfoWindow: false,
@@ -13,9 +11,6 @@ export class MapContainer extends Component {
   };
 
   onMarkerClick = (props, marker, e) => {
-    console.log('onMarkerClick');
-    console.log(props);
-    console.log(marker);
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -34,7 +29,14 @@ export class MapContainer extends Component {
 
   render() {
     console.log('MapContainer rendering...');
-    const { google, style, onReady, markerData, center } = this.props;
+    const {
+      google,
+      style,
+      onReady,
+      markerData,
+      center,
+      initialCoords
+    } = this.props;
 
     // If no marker data, center on initialCoords
     if (markerData.lat === null) {
@@ -49,7 +51,6 @@ export class MapContainer extends Component {
         style={style}
         onReady={onReady}
         initialCenter={{ lat: initialCoords.lat, lng: initialCoords.lng }}
-        // center={center ? { lat: markerData.lat, lng: markerData.lng } : null}
         center={{ lat: markerData.lat, lng: markerData.lng }}
       >
         {/* If marker data props received, create marker */}

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-
 import MapSearchBar from '../../../components/MapSearchBar/MapSearchBar';
 import MapContainer from '../../../components/MapContainer/MapContainer';
 import { withFirebase } from '../../../components/Firebase';
@@ -74,6 +72,7 @@ class AddEventBase extends Component {
   };
 
   render() {
+    const initialCoords = { lat: 33.6846, lng: -117.8265 };
     console.log('AddEvent rendering...');
 
     return (
@@ -98,7 +97,6 @@ class AddEventBase extends Component {
                 {/* Autocomplete search and map */}
                 <label className='heading'>Location</label>
                 <MapSearchBar onPlaceLoaded={this.onPlaceLoaded} />
-                {/* <div className='mapContainer'> */}
                 <MapContainer
                   style={{
                     height: '500px',
@@ -111,9 +109,11 @@ class AddEventBase extends Component {
                     address: this.state.address,
                     locationName: this.state.locationName
                   }}
+                  initialCoords={{
+                    lat: initialCoords.lat,
+                    lng: initialCoords.lng
+                  }}
                 />
-                {/* </div> */}
-
                 <button type='submit'>Submit Event</button>
               </form>
             </div>
