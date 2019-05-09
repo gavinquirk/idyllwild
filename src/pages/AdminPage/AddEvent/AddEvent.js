@@ -22,6 +22,8 @@ class AddEventBase extends Component {
     title: '',
     lat: null,
     lng: null,
+    address: '',
+    locationName: '',
     error: null
   };
 
@@ -42,6 +44,8 @@ class AddEventBase extends Component {
         text: this.state.text,
         lat: this.state.lat,
         lng: this.state.lng,
+        address: this.state.address,
+        locationName: this.state.locationName,
         userId: authUser.uid,
         createdAt: this.props.firebase.serverValue.TIMESTAMP
       })
@@ -55,12 +59,13 @@ class AddEventBase extends Component {
   };
 
   onPlaceLoaded = place => {
-    console.log(place.geometry.location.lat());
-    console.log(place.geometry.location.lng());
+    console.log(place.name);
     // Set state with new map data
     this.setState({
       lat: place.geometry.location.lat(),
-      lng: place.geometry.location.lng()
+      lng: place.geometry.location.lng(),
+      address: place.formatted_address,
+      locationName: place.name
     });
   };
 
@@ -100,11 +105,16 @@ class AddEventBase extends Component {
                     position: 'relative',
                     marginTop: '20px'
                   }}
-                  markerData={{ lat: this.state.lat, lng: this.state.lng }}
+                  markerData={{
+                    lat: this.state.lat,
+                    lng: this.state.lng,
+                    address: this.state.address,
+                    locationName: this.state.locationName
+                  }}
                 />
                 {/* </div> */}
 
-                <button type='submit'>Send</button>
+                <button type='submit'>Submit Event</button>
               </form>
             </div>
           </div>

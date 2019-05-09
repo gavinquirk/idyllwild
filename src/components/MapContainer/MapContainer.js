@@ -48,28 +48,33 @@ export class MapContainer extends Component {
         zoom={14}
         style={style}
         onReady={onReady}
-        // center={center}
+        initialCenter={{ lat: initialCoords.lat, lng: initialCoords.lng }}
+        // center={center ? { lat: markerData.lat, lng: markerData.lng } : null}
         center={{ lat: markerData.lat, lng: markerData.lng }}
       >
         {/* If marker data props received, create marker */}
         {markerData ? (
           <Marker
             position={{ lat: markerData.lat, lng: markerData.lng }}
-            name={'test location'}
+            name={markerData.locationName}
+            address={markerData.address}
             onClick={this.onMarkerClick}
           />
         ) : null}
 
-        {/* {markerData ? ( */}
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
-        >
-          <div>
-            <h1>{this.state.selectedPlace.name}</h1>
-          </div>
-        </InfoWindow>
-        {/* ) : null} */}
+        {markerData ? (
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+          >
+            <div style={{ color: '#000' }}>
+              <h1>{this.state.selectedPlace.name}</h1>
+              <span>{this.state.selectedPlace.address}</span>
+            </div>
+          </InfoWindow>
+        ) : (
+          'null'
+        )}
       </Map>
     );
   }
