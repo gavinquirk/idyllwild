@@ -55,7 +55,6 @@ class AddEventBase extends Component {
   };
 
   onPlaceLoaded = place => {
-    // console.log(place);
     console.log(place.geometry.location.lat());
     console.log(place.geometry.location.lng());
     // Set state with new map data
@@ -70,7 +69,7 @@ class AddEventBase extends Component {
   };
 
   render() {
-    // const initialCoords = { lat: 33.6846, lng: -117.8265 }; // Irvine, California
+    console.log('AddEvent rendering...');
 
     return (
       <AuthUserContext.Consumer>
@@ -92,13 +91,18 @@ class AddEventBase extends Component {
                   onChange={this.onChange}
                 />
                 {/* Autocomplete search and map */}
+                <label className='heading'>Location</label>
                 <MapSearchBar onPlaceLoaded={this.onPlaceLoaded} />
-                <div style={{ maxHeight: '500px' }}>
-                  <MapContainer
-                    style={{ width: '500px', height: '500px' }}
-                    markerData={{ lat: this.state.lat, lng: this.state.lng }}
-                  />
-                </div>
+                {/* <div className='mapContainer'> */}
+                <MapContainer
+                  style={{
+                    height: '500px',
+                    position: 'relative',
+                    marginTop: '20px'
+                  }}
+                  markerData={{ lat: this.state.lat, lng: this.state.lng }}
+                />
+                {/* </div> */}
 
                 <button type='submit'>Send</button>
               </form>

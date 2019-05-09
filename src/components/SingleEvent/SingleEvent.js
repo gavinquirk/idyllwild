@@ -45,7 +45,7 @@ class SingleEventBase extends Component {
             <h1>{event.title}</h1>
             <p>{event.text}</p>
             <div className='map'>
-              <MapContainer coords={{ lat: event.lat, lng: event.lng }} />
+              <MapContainer markerData={{ lat: event.lat, lng: event.lng }} center={{ lat: event.lat, lng: event.lng }}/>
             </div>
           </>
         )}
