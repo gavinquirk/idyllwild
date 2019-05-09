@@ -3,27 +3,34 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 export class MapContainer extends Component {
   render() {
-    const { coords } = this.props;
+    const { google, style, onReady, markerData } = this.props;
+    console.log(this.props);
     return (
       <Map
-        google={this.props.google}
+        google={google}
         zoom={14}
-        style={{ width: '100%', height: '100%', position: 'relative' }}
-        initialCenter={{
-          lat: coords.lat,
-          lng: coords.lng
-        }}
+        style={style}
+        onReady={onReady}
+        center={{ lat: markerData.lat, lng: markerData.lng }}
       >
-        <Marker
-          position={{ lat: coords.lat, lng: coords.lng }}
-          name={'test location'}
-        />
+        {/* If marker data props received, create marker */}
+        {markerData ? (
+          <Marker
+            position={{ lat: markerData.lat, lng: markerData.lng }}
+            name={'test location'}
+          />
+        ) : null}
 
-        {/* <InfoWindow onClose={this.onInfoWindowClose}>
-          <div>
-            <h1>{this.state.selectedPlace.name}</h1>
-          </div>
-        </InfoWindow> */}
+        {markerData ? (
+          <InfoWindow
+            onClose={this.onInfoWindowClose}
+            position={{ lat: markerData.lat, lng: markerData.lng }}
+          >
+            <div>
+              <h1>test</h1>
+            </div>
+          </InfoWindow>
+        ) : null}
       </Map>
     );
   }

@@ -3,6 +3,7 @@ import { compose } from 'recompose';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 import MapSearchBar from '../../../components/MapSearchBar/MapSearchBar';
+import MapContainer from '../../../components/MapContainer/MapContainer';
 import { withFirebase } from '../../../components/Firebase';
 import {
   withAuthorization,
@@ -23,6 +24,14 @@ class AddEventBase extends Component {
     lng: null,
     error: null
   };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.lat !== nextState.lat || this.state.lng !== nextState.lng) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   onCreateEvent = (event, authUser) => {
     // Post form data to events array in DB
@@ -46,7 +55,14 @@ class AddEventBase extends Component {
   };
 
   onPlaceLoaded = place => {
-    console.log(place);
+    // console.log(place);
+    console.log(place.geometry.location.lat());
+    console.log(place.geometry.location.lng());
+    // Set state with new map data
+    this.setState({
+      lat: place.geometry.location.lat(),
+      lng: place.geometry.location.lng()
+    });
   };
 
   onChange = event => {
@@ -54,8 +70,7 @@ class AddEventBase extends Component {
   };
 
   render() {
-    const { text, title, lat, lng } = this.state;
-    const initialCoords = { lat: 33.6846, lng: -117.8265 }; // Irvine, California
+    // const initialCoords = { lat: 33.6846, lng: -117.8265 }; // Irvine, California
 
     return (
       <AuthUserContext.Consumer>
@@ -68,56 +83,25 @@ class AddEventBase extends Component {
               <form onSubmit={event => this.onCreateEvent(event, authUser)}>
                 {/* Title */}
                 <label className='heading'>Title</label>
-                <input
-                  name='title'
-                  type='text'
-                  value={title}
-                  onChange={this.onChange}
-                />
+                <input name='title' type='text' onChange={this.onChange} />
                 {/* Text */}
                 <label className='heading'>Text</label>
                 <textarea
                   name='text'
                   type='textarea'
-                  value={text}
                   onChange={this.onChange}
                 />
-                {/* Location */}
-                <label className='heading'>Location (coordinates)</label>
-                <input
-                  name='lat'
-                  type='text'
-                  value={lat}
-                  onChange={this.onChange}
-                  placeholder='Lattitude'
-                />
-                <input
-                  name='lng'
-                  type='text'
-                  value={lng}
-                  onChange={this.onChange}
-                  placeholder='Longitude'
-                />
+                {/* Autocomplete search and map */}
                 <MapSearchBar onPlaceLoaded={this.onPlaceLoaded} />
+                <div style={{ maxHeight: '500px' }}>
+                  <MapContainer
+                    style={{ width: '500px', height: '500px' }}
+                    markerData={{ lat: this.state.lat, lng: this.state.lng }}
+                  />
+                </div>
+
                 <button type='submit'>Send</button>
               </form>
-              {/* <Map
-                google={this.props.google}
-                zoom={14}
-                style={{ width: '100%', height: '100%', position: 'relative' }}
-                onReady={props =>
-                  this.placesInit(props, this.autocompleteInput)
-                }
-                initialCenter={{
-                  lat: initialCoords.lat,
-                  lng: initialCoords.lng
-                }}
-              >
-                <Marker
-                  position={{ lat: initialCoords.lat, lng: initialCoords.lng }}
-                  name={'test location'}
-                />
-              </Map> */}
             </div>
           </div>
         )}

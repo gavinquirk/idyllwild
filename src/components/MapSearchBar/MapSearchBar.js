@@ -30,7 +30,7 @@ class MapSearchBar extends React.Component {
       <input
         ref={this.autocompleteInput}
         id='autocomplete'
-        placeholder='Enter your address'
+        placeholder='Search for a location'
         type='text'
       />
     );
