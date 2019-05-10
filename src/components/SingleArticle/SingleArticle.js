@@ -31,11 +31,6 @@ class SingleArticleBase extends Component {
       });
   }
 
-  componentWillUnmount() {
-    // End listener for article data
-    this.props.firebase.article(this.props.match.params.id).off();
-  }
-
   render() {
     const { article, loading } = this.state;
     console.log('Rendering SingleArticle component...');

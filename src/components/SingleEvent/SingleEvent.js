@@ -22,16 +22,12 @@ class SingleEventBase extends Component {
     // Else, query db for event data
     this.props.firebase
       .event(this.props.match.params.id)
-      .on('value', snapshot => {
+      .once('value', snapshot => {
         this.setState({
           event: snapshot.val(),
           loading: false
         });
       });
-  }
-
-  componentWillUnmount() {
-    this.props.firebase.user(this.props.match.params.id).off();
   }
 
   render() {
