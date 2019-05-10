@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 
 import './NewsFeed.css';
@@ -74,7 +75,14 @@ class NewsFeedBase extends Component {
           articles.map(article => (
             <div key={article.uid} className='article'>
               <div className='article--heading'>
-                <h3 className='heading'>{article.title}</h3>
+                <Link
+                  to={{
+                    pathname: `/articles/${article.uid}`,
+                    state: { article } // Pass article data to details component
+                  }}
+                >
+                  <h3 className='heading'>{article.title}</h3>
+                </Link>
                 <span className='article--date'>
                   {this.formatTime(article.createdAt)}
                 </span>

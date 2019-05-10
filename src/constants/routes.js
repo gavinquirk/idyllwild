@@ -8,3 +8,4 @@ export const ADMIN_DETAILS = '/admin/:id';
 export const ADMIN_ADD_ARTICLE = '/admin/add-article';
 export const ADMIN_ADD_EVENT = '/admin/add-event';
 export const SINGLE_EVENT = '/events/:id';
+export const SINGLE_ARTICLE = '/articles/:id';

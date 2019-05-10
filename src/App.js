@@ -14,6 +14,7 @@ import SignUpPage from './pages/SignUpPage/SignUpPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import PasswordForgetPage from './pages/PasswordForgetPage/PasswordForgetPage';
 import SingleEvent from './components/SingleEvent/SingleEvent';
+import SingleArticle from './components/SingleArticle/SingleArticle';
 
 import * as ROUTES from './constants/routes';
 import { withAuthentication } from './components/Session';
@@ -32,6 +33,7 @@ const App = () => (
         <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
         <Route path={ROUTES.DASHBOARD} component={DashboardPage} />
         <Route path={ROUTES.SINGLE_EVENT} component={SingleEvent} />
+        <Route path={ROUTES.SINGLE_ARTICLE} component={SingleArticle} />
       </Router>
     </Layout>
   </div>
