@@ -1,0 +1,8 @@
+.SignOutButton {
+  border-radius: 5px;
+  background-color: var(--color-red-vibrant);
+  padding: 5px 10px;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
