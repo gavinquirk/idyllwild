@@ -13,6 +13,7 @@ import SignInPage from './pages/SignInPage/SignInPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import PasswordForgetPage from './pages/PasswordForgetPage/PasswordForgetPage';
+import PasswordChangePage from './components/PasswordChangePage/PasswordChangePage';
 import SingleEvent from './components/SingleEvent/SingleEvent';
 import SingleArticle from './components/SingleArticle/SingleArticle';
 
@@ -31,6 +32,7 @@ const App = () => (
         <Route path={ROUTES.SIGN_IN} component={SignInPage} />
         <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
         <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+        <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
         <Route path={ROUTES.DASHBOARD} component={DashboardPage} />
         <Route path={ROUTES.SINGLE_EVENT} component={SingleEvent} />
         <Route path={ROUTES.SINGLE_ARTICLE} component={SingleArticle} />
