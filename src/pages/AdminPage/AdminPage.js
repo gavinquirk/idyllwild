@@ -24,6 +24,7 @@ const AdminPage = () => (
       {/* <h1>Admin</h1>
       <p>The Admin Page is accessible by every signed in admin user.</p> */}
       <Switch>
+        <Route exact path={ROUTES.ADMIN} component={AdminHome} />
         {/* User Routes */}
         <Route
           exact
@@ -43,6 +44,18 @@ const AdminPage = () => (
     </div>
   </div>
 );
+
+const AdminHome = () => {
+  return (
+    <div className='AdminHome'>
+      <h1 className='heading'>Welcome to the Admin Page</h1>
+      <p>
+        Here you can manage your users, articles, and events. Click on any of
+        the links in the toolbar.
+      </p>
+    </div>
+  );
+};
 
 const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN]; // If user is authenticated, and admin role is not null
 
