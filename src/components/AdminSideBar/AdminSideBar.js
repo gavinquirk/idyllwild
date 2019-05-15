@@ -14,7 +14,9 @@ class AdminSideBar extends Component {
         <ul>
           <h4>Users</h4>
           <li>Add a User</li>
-          <li>Manage Users</li>
+          <li>
+            <Link to={ROUTES.ADMIN_USER_LIST}>Manage Users</Link>
+          </li>
           <h4>Articles</h4>
           <li>
             <Link to={ROUTES.ADMIN_ADD_ARTICLE}>Add Article</Link>

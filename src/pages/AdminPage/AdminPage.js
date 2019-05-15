@@ -13,7 +13,6 @@ import * as ROUTES from '../../constants/routes';
 import './AdminPage.css';
 
 import AdminSideBar from '../../components/AdminSideBar/AdminSideBar';
-import AdminAddEvent from '../../pages/AdminPage/AddEvent/AddEvent';
 
 const AdminPage = () => (
   <div className='AdminPage'>
@@ -22,9 +21,12 @@ const AdminPage = () => (
       <h1>Admin</h1>
       <p>The Admin Page is accessible by every signed in admin user.</p>
       <Switch>
-        {/* <Route exact path={ROUTES.ADMIN_DETAILS} component={UserItem} />
-        <Route exact path={ROUTES.ADMIN} component={UserList} /> */}
-        {/* <Route exact path={ROUTES.ADMIN_ADD_EVENT} component={AdminAddEvent} /> */}
+        {/* User Routes */}
+        <Route exact path={ROUTES.ADMIN_USER_DETAILS} component={UserItem} />
+        <Route exact path={ROUTES.ADMIN_USER_LIST} component={UserList} />
+        {/* Article Routes */}
+        <Route exact path={ROUTES.ADMIN_USER_LIST} component={UserList} />
+        {/* Event Routes */}
       </Switch>
     </div>
   </div>
@@ -37,6 +39,7 @@ class UserListBase extends Component {
   };
 
   componentDidMount() {
+    console.log('User List Mounted');
     this.setState({ loading: true });
     this.props.firebase.users().on('value', snapshot => {
       const usersObject = snapshot.val();
@@ -75,7 +78,7 @@ class UserListBase extends Component {
               <span>
                 <Link
                   to={{
-                    pathname: `${ROUTES.ADMIN}/${user.uid}`,
+                    pathname: `${ROUTES.ADMIN}/users/${user.uid}`,
                     state: { user } // Pass user data to details component
                   }}
                 >
@@ -98,6 +101,7 @@ class UserItemBase extends Component {
   };
 
   componentDidMount() {
+    console.log('USER ITEM MOUNTED');
     // If user state is passed, don't query for user
     if (this.state.user) {
       return;
