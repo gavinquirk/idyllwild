@@ -25,12 +25,10 @@ class AdminSideBar extends Component {
             <h4>Articles</h4>
           </li>
           <li>
-            <Link className='toolbar-link' to={ROUTES.ADMIN_ADD_ARTICLE}>
-              Add Article
-            </Link>
+            <Link to={ROUTES.ADMIN_ADD_ARTICLE}>Add Article</Link>
           </li>
           <li>
-            <a href='#'>Manage Articles</a>{' '}
+            <Link to={ROUTES.ADMIN_ARTICLE_LIST}>Manage Articles</Link>
           </li>
           <li>
             <h4>Events</h4>

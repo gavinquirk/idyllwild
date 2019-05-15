@@ -12,9 +12,14 @@ import * as ROUTES from '../../constants/routes';
 import './AdminPage.css';
 
 import AdminSideBar from '../../components/AdminSideBar/AdminSideBar';
+
 import AdminUserList from '../../components/AdminUserList/AdminUserList';
 import AdminUserItem from '../../components/AdminUserItem/AdminUserItem';
+
 import AdminAddArticle from '../../components/AdminAddArticle/AdminAddArticle';
+import AdminArticleList from '../../components/AdminArticleList/AdminArticleList';
+import AdminArticleItem from '../../components/AdminArticleItem/AdminArticleItem';
+
 import AdminAddEvent from '../../components/AdminAddEvent/AdminAddEvent';
 
 const AdminPage = () => (
@@ -26,13 +31,23 @@ const AdminPage = () => (
       <Switch>
         <Route exact path={ROUTES.ADMIN} component={AdminHome} />
         {/* User Routes */}
+        <Route exact path={ROUTES.ADMIN_USER_LIST} component={AdminUserList} />
         <Route
           exact
           path={ROUTES.ADMIN_USER_DETAILS}
           component={AdminUserItem}
         />
-        <Route exact path={ROUTES.ADMIN_USER_LIST} component={AdminUserList} />
         {/* Article Routes */}
+        <Route
+          exact
+          path={ROUTES.ADMIN_ARTICLE_LIST}
+          component={AdminArticleList}
+        />
+        <Route
+          exact
+          path={ROUTES.ADMIN_ARTICLE_DETAILS}
+          component={AdminArticleItem}
+        />
         <Route
           exact
           path={ROUTES.ADMIN_ADD_ARTICLE}

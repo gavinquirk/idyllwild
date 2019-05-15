@@ -41,8 +41,12 @@ const App = () => (
         {/* Admin Routes */}
         {/* TODO: Why must these admin routes be declared in app.js and not only in admin page? */}
         <Route exact path={ROUTES.ADMIN} component={AdminPage} />
-        <Route exact path={ROUTES.ADMIN_USER_DETAILS} component={UserItem} />
         <Route exact path={ROUTES.ADMIN_USER_LIST} component={UserList} />
+
+        <Route exact path={ROUTES.ADMIN_USER_DETAILS} component={UserItem} />
+        <Route exact path={ROUTES.ADMIN_ARTICLE_LIST} component={UserList} />
+
+        <Route exact path={ROUTES.ADMIN_ARTICLE_DETAILS} component={UserItem} />
         <Route exact path={ROUTES.ADMIN_ADD_ARTICLE} component={UserList} />
         <Route exact path={ROUTES.ADMIN_ADD_EVENT} component={UserList} />
       </Router>
