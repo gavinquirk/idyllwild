@@ -16,8 +16,8 @@ import SingleArticle from './components/SingleArticle/SingleArticle';
 
 // Admin Components
 import AdminPage from './pages/AdminPage/AdminPage';
-import AddArticle from './pages/AdminPage/AddArticle/AddArticle';
-import AddEvent from './pages/AdminPage/AddEvent/AddEvent';
+// import AddArticle from './components/AdminAddArticle/AdminAddArticle';
+// import AddEvent from './pages/AdminPage/AddEvent/AddEvent';
 // TODO: Why must these components be imported? Not even correct paths?
 import UserItem from './pages/AdminPage/AdminPage';
 import UserList from './pages/AdminPage/AdminPage';
@@ -43,8 +43,8 @@ const App = () => (
         <Route exact path={ROUTES.ADMIN} component={AdminPage} />
         <Route exact path={ROUTES.ADMIN_USER_DETAILS} component={UserItem} />
         <Route exact path={ROUTES.ADMIN_USER_LIST} component={UserList} />
-        <Route exact path={ROUTES.ADMIN_ADD_ARTICLE} component={AddArticle} />
-        <Route exact path={ROUTES.ADMIN_ADD_EVENT} component={AddEvent} />
+        <Route exact path={ROUTES.ADMIN_ADD_ARTICLE} component={UserList} />
+        <Route exact path={ROUTES.ADMIN_ADD_EVENT} component={UserList} />
       </Router>
     </Layout>
   </div>

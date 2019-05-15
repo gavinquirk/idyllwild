@@ -1,6 +1,6 @@
-.AddArticle {
+/* .AddArticle {
   grid-column: 4 / 10;
-}
+} */
 
 .AddArticle-container form {
   display: flex;

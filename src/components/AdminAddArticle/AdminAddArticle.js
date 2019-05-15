@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
-import { withFirebase } from '../../../components/Firebase';
+import { withFirebase } from '../Firebase';
 import {
   withAuthorization,
   withEmailVerification,
   AuthUserContext
-} from '../../../components/Session';
+} from '../Session';
 
-import * as ROLES from '../../../constants/roles';
-import * as ROUTES from '../../../constants/routes';
+import * as ROLES from '../../constants/roles';
+import * as ROUTES from '../../constants/routes';
 
-import './AddArticle.css';
+import './AdminAddArticle.css';
 
-class AddArticleBase extends Component {
+class AdminAddArticleBase extends Component {
   state = {
     text: '',
     title: '',
     error: null
   };
+
+  componentDidMount() {
+    console.log('AdminAddArticle Mounted');
+  }
 
   onCreateArticle = (event, authUser) => {
     // Post form data to articles array in DB
@@ -81,11 +85,11 @@ class AddArticleBase extends Component {
   }
 }
 
-const AddArticle = withFirebase(AddArticleBase);
+const AdminAddArticle = withFirebase(AdminAddArticleBase);
 
 const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN]; // If user is authenticated, and admin role is not null
 
 export default compose(
   withEmailVerification,
   withAuthorization(condition)
-)(AddArticle);
+)(AdminAddArticle);

@@ -14,6 +14,8 @@ import './AdminPage.css';
 import AdminSideBar from '../../components/AdminSideBar/AdminSideBar';
 import AdminUserList from '../../components/AdminUserList/AdminUserList';
 import AdminUserItem from '../../components/AdminUserItem/AdminUserItem';
+import AdminAddArticle from '../../components/AdminAddArticle/AdminAddArticle';
+import AdminAddEvent from '../../components/AdminAddEvent/AdminAddEvent';
 
 const AdminPage = () => (
   <div className='AdminPage'>
@@ -30,8 +32,13 @@ const AdminPage = () => (
         />
         <Route exact path={ROUTES.ADMIN_USER_LIST} component={AdminUserList} />
         {/* Article Routes */}
-        {/* <Route exact path={ROUTES.ADMIN_USER_LIST} component={UserList} /> */}
+        <Route
+          exact
+          path={ROUTES.ADMIN_ADD_ARTICLE}
+          component={AdminAddArticle}
+        />
         {/* Event Routes */}
+        <Route exact path={ROUTES.ADMIN_ADD_EVENT} component={AdminAddEvent} />
       </Switch>
     </div>
   </div>
