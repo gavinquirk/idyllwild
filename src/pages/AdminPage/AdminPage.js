@@ -10,14 +10,23 @@ import {
 import * as ROLES from '../../constants/roles';
 import * as ROUTES from '../../constants/routes';
 
+import './AdminPage.css';
+
+import AdminSideBar from '../../components/AdminSideBar/AdminSideBar';
+import AdminAddEvent from '../../pages/AdminPage/AddEvent/AddEvent';
+
 const AdminPage = () => (
-  <div>
-    <h1>Admin</h1>
-    <p>The Admin Page is accessible by every signed in admin user.</p>
-    <Switch>
-      <Route exact path={ROUTES.ADMIN_DETAILS} component={UserItem} />
-      <Route exact path={ROUTES.ADMIN} component={UserList} />
-    </Switch>
+  <div className='AdminPage'>
+    <AdminSideBar />
+    <div className='admin-content'>
+      <h1>Admin</h1>
+      <p>The Admin Page is accessible by every signed in admin user.</p>
+      <Switch>
+        {/* <Route exact path={ROUTES.ADMIN_DETAILS} component={UserItem} />
+        <Route exact path={ROUTES.ADMIN} component={UserList} /> */}
+        {/* <Route exact path={ROUTES.ADMIN_ADD_EVENT} component={AdminAddEvent} /> */}
+      </Switch>
+    </div>
   </div>
 );
 

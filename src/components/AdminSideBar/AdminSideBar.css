@@ -1,0 +1,14 @@
+.AdminSideBar {
+  grid-column: 1 / 3;
+
+  background-color: black;
+}
+
+.AdminSideBar ul {
+  list-style: none;
+}
+
+.AdminSideBar ul li a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,3 +1,12 @@
 .AdminPage {
   grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.admin-content {
+  grid-column: 3 / -1;
+
+  margin: 0 25px;
 }
