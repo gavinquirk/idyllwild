@@ -11,22 +11,36 @@ class AdminSideBar extends Component {
     return (
       <div className='AdminSideBar'>
         <h1>Toolbar</h1>
-        <ul>
-          <h4>Users</h4>
-          <li>Add a User</li>
+        <ul className='AdminSideBarList'>
+          <li>
+            <h4>Users</h4>
+          </li>
+          <li>
+            <a href='#'>Add a User</a>{' '}
+          </li>
           <li>
             <Link to={ROUTES.ADMIN_USER_LIST}>Manage Users</Link>
           </li>
-          <h4>Articles</h4>
           <li>
-            <Link to={ROUTES.ADMIN_ADD_ARTICLE}>Add Article</Link>
+            <h4>Articles</h4>
           </li>
-          <li>Manage Articles</li>
-          <h4>Events</h4>
+          <li>
+            <Link className='toolbar-link' to={ROUTES.ADMIN_ADD_ARTICLE}>
+              Add Article
+            </Link>
+          </li>
+          <li>
+            <a href='#'>Manage Articles</a>{' '}
+          </li>
+          <li>
+            <h4>Events</h4>
+          </li>
           <li>
             <Link to={ROUTES.ADMIN_ADD_EVENT}>Add Event</Link>
           </li>
-          <li>Manage Events</li>
+          <li>
+            <a href='#'>Manage Events</a>{' '}
+          </li>
         </ul>
       </div>
     );

@@ -1,14 +1,35 @@
 .AdminSideBar {
   grid-column: 1 / 3;
 
-  background-color: black;
+  border-right: 2px var(--font-light) solid;
+
+  min-height: 100vh;
 }
 
-.AdminSideBar ul {
+.AdminSideBarList {
   list-style: none;
 }
 
-.AdminSideBar ul li a {
-  text-decoration: none;
+.AdminSideBar h4 {
   color: inherit;
+  padding: 10px;
+  background-color: rgb(78, 88, 97);
+
+  display: block;
+
+  border-bottom: 2px var(--font-light) solid;
+  border-top: 2px var(--font-light) solid;
+}
+
+.AdminSideBarList a {
+  color: inherit;
+  padding: 10px;
+  background-color: lightslategray;
+  text-decoration: none;
+
+  display: block;
+}
+
+.AdminSideBarList a:hover {
+  background-color: lightgray;
 }
