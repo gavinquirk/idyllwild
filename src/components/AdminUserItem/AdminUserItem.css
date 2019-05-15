@@ -1,0 +1,26 @@
+.AdminUserItem h1 {
+  border-bottom: 2px var(--font-light) solid;
+}
+
+.AdminUserItem .list {
+  display: flex;
+  flex-direction: column;
+}
+
+.AdminUserItem .list span {
+  margin: 10px 0;
+}
+
+.AdminUserItem .user-buttons button {
+  outline: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 0 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.AdminUserItem .user-buttons .delete-button {
+  background-color: var(--color-red-vibrant);
+  color: inherit;
+}

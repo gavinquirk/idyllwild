@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { withFirebase } from '../Firebase';
 
+import './AdminUserItem.css';
+
 class AdminUserItem extends Component {
   state = {
     loading: false,
@@ -37,16 +39,24 @@ class AdminUserItem extends Component {
     this.props.firebase.doPasswordReset(this.state.user.email);
   };
 
+  onEditUserDetails = () => {
+    console.log('Edit User Details clicked...');
+  };
+
+  onDeleteUser = () => {
+    console.log('Delete User clicked...');
+  };
+
   render() {
     const { user, loading } = this.state;
 
     return (
-      <div>
-        <h2>User ({this.props.match.params.id})</h2>
+      <div className='AdminUserItem'>
+        <h1 className='heading'>User: {user.username}</h1>
         {loading && <div>Loading ...</div>}
 
         {user && (
-          <div>
+          <div className='list'>
             <span>
               <strong>ID:</strong> {user.uid}
             </span>
@@ -56,11 +66,21 @@ class AdminUserItem extends Component {
             <span>
               <strong>Username:</strong> {user.username}
             </span>
-            <span>
+            <div className='user-buttons'>
               <button type='button' onClick={this.onSendPasswordResetEmail}>
                 Send Password Reset
               </button>
-            </span>
+              <button type='button' onClick={this.onEditUserDetails}>
+                Edit User Details
+              </button>
+              <button
+                className='delete-button'
+                type='button'
+                onClick={this.onDeleteUser}
+              >
+                Delete User
+              </button>
+            </div>
           </div>
         )}
       </div>

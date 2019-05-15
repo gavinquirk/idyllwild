@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import { withFirebase } from '../Firebase';
 
+import './AdminUserList.css';
+
 class AdminUserList extends Component {
   state = {
     loading: false,
@@ -31,8 +33,8 @@ class AdminUserList extends Component {
     const { users, loading } = this.state;
 
     return (
-      <div>
-        <h2>Users</h2>
+      <div className='AdminUserList'>
+        <h1 className='heading'>Users</h1>
         {loading && <div>Loading ...</div>}
         <ul>
           {users.map(user => (
@@ -48,6 +50,7 @@ class AdminUserList extends Component {
               </span>
               <span>
                 <Link
+                  className='user-details-btn'
                   to={{
                     pathname: `${ROUTES.ADMIN}/users/${user.uid}`,
                     state: { user } // Pass user data to details component

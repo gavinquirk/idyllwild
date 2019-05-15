@@ -21,8 +21,8 @@ const AdminPage = () => (
   <div className='AdminPage'>
     <AdminSideBar />
     <div className='admin-content'>
-      <h1>Admin</h1>
-      <p>The Admin Page is accessible by every signed in admin user.</p>
+      {/* <h1>Admin</h1>
+      <p>The Admin Page is accessible by every signed in admin user.</p> */}
       <Switch>
         {/* User Routes */}
         <Route
