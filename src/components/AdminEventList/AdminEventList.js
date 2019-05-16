@@ -12,7 +12,6 @@ class AdminEventList extends Component {
   };
 
   componentDidMount() {
-    console.log('Event List Mounted');
     this.setState({ loading: true });
     this.props.firebase.events().once('value', snapshot => {
       const eventsObject = snapshot.val();

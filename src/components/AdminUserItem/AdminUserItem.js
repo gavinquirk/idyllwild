@@ -14,7 +14,6 @@ class AdminUserItem extends Component {
   };
 
   componentDidMount() {
-    console.log('USER ITEM MOUNTED');
     // If user state is passed, don't query for user
     if (this.state.user) {
       return;

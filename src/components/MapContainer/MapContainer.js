@@ -28,15 +28,7 @@ export class MapContainer extends Component {
   };
 
   render() {
-    console.log('MapContainer rendering...');
-    const {
-      google,
-      style,
-      onReady,
-      markerData,
-      center,
-      initialCoords
-    } = this.props;
+    const { google, style, onReady, markerData, initialCoords } = this.props;
 
     // If no marker data, center on initialCoords
     if (markerData.lat === null) {

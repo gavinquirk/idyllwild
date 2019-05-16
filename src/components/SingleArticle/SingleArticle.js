@@ -13,14 +13,12 @@ class SingleArticleBase extends Component {
   componentDidMount() {
     // If event state is passed, don't query for user
     if (this.state.article) {
-      console.log('Article data received from landing page');
       return;
     }
 
     this.setState({ loading: true });
 
     // Else, query db for article data
-    console.log('Querying for article data');
     this.props.firebase
       .article(this.props.match.params.id)
       .once('value', snapshot => {
@@ -33,7 +31,6 @@ class SingleArticleBase extends Component {
 
   render() {
     const { article, loading } = this.state;
-    console.log('Rendering SingleArticle component...');
     return (
       <div className='SingleArticle'>
         {loading && <div>Loading ...</div>}

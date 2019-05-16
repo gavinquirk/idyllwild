@@ -19,10 +19,6 @@ class AdminAddArticleBase extends Component {
     error: null
   };
 
-  componentDidMount() {
-    console.log('AdminAddArticle Mounted');
-  }
-
   onCreateArticle = (event, authUser) => {
     // Post form data to articles array in DB
     this.props.firebase

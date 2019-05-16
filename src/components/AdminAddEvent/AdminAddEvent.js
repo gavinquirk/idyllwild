@@ -57,7 +57,6 @@ class AdminAddEventBase extends Component {
   };
 
   onPlaceLoaded = place => {
-    console.log(place.name);
     // Set state with new map data
     this.setState({
       lat: place.geometry.location.lat(),
@@ -73,7 +72,6 @@ class AdminAddEventBase extends Component {
 
   render() {
     const initialCoords = { lat: 33.6846, lng: -117.8265 };
-    console.log('AddEvent rendering...');
 
     return (
       <AuthUserContext.Consumer>

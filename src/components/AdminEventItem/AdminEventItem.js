@@ -12,7 +12,6 @@ class AdminEventItem extends Component {
   };
 
   componentDidMount() {
-    console.log('EVENT ITEM MOUNTED');
     // If event state is passed, don't query for event
     if (this.state.event) {
       return;
@@ -31,13 +30,13 @@ class AdminEventItem extends Component {
       });
   }
 
-  onEditEventDetails = () => {
-    console.log('Edit Event Details clicked...');
-  };
+  // onEditEventDetails = () => {
+  //   console.log('Edit Event Details clicked...');
+  // };
 
-  onDeleteEvent = () => {
-    console.log('Delete Event clicked...');
-  };
+  // onDeleteEvent = () => {
+  //   console.log('Delete Event clicked...');
+  // };
 
   render() {
     const { event, loading } = this.state;
