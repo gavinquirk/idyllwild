@@ -8,6 +8,8 @@ class AdminUserItem extends Component {
   state = {
     loading: false,
     user: null,
+    editMode: false,
+    editUsername: '',
     ...this.props.location.state
   };
 
@@ -23,7 +25,7 @@ class AdminUserItem extends Component {
     // Else, query db for user data
     this.props.firebase
       .user(this.props.match.params.id)
-      .on('value', snapshot => {
+      .once('value', snapshot => {
         this.setState({
           user: snapshot.val(),
           loading: false
@@ -31,20 +33,48 @@ class AdminUserItem extends Component {
       });
   }
 
-  componentWillUnmount() {
-    this.props.firebase.user(this.props.match.params.id).off();
-  }
-
   onSendPasswordResetEmail = () => {
     this.props.firebase.doPasswordReset(this.state.user.email);
   };
 
-  onEditUser = () => {
-    console.log('Edit User Details clicked...');
+  // State update for forms
+  onChangeEditUsername = event => {
+    this.setState({ editUsername: event.target.value });
   };
 
-  onDeleteUser = () => {
-    console.log('Delete User clicked...');
+  // Toggle edit mode, set edit state to user state
+  onToggleEditMode = () => {
+    this.setState(state => ({
+      editMode: !state.editMode,
+      editUsername: this.state.user.username
+    }));
+  };
+
+  onSaveUser = () => {
+    // Call onEditUser with edit state as args, set edit mode to false
+    this.onEditUser(this.state.user, this.state.editUsername);
+    this.setState({ editMode: false });
+  };
+
+  onEditUser = (user, username) => {
+    // Destructure uid and snapshot data
+    const { ...userSnapshot } = user;
+
+    const updatedUser = {
+      ...userSnapshot,
+      username,
+      editedAt: this.props.firebase.serverValue.TIMESTAMP
+    };
+
+    // Update user with new data, add editedAt timestamp, update state
+    this.props.firebase
+      .user(user.uid)
+      .set(updatedUser)
+      .then(
+        this.setState({ user: updatedUser }),
+        console.log('Successfully Updated')
+      )
+      .catch(error => console.log('error: ', error));
   };
 
   // Set user to disabled
@@ -59,7 +89,7 @@ class AdminUserItem extends Component {
   };
 
   render() {
-    const { user, loading } = this.state;
+    const { user, loading, editMode, editUsername } = this.state;
 
     return (
       <div className='AdminUserItem'>
@@ -74,16 +104,35 @@ class AdminUserItem extends Component {
             <span>
               <strong>E-Mail:</strong> {user.email}
             </span>
-            <span>
-              <strong>Username:</strong> {user.username}
-            </span>
+
+            {/* Edit mode conditional rendering */}
+            {editMode ? (
+              <input
+                type='text'
+                value={editUsername}
+                onChange={this.onChangeEditUsername}
+              />
+            ) : (
+              <span>
+                <strong>Username:</strong> {user.username}
+              </span>
+            )}
+
             <div className='user-buttons'>
-              <button type='button' onClick={this.onSendPasswordResetEmail}>
-                Send Password Reset
-              </button>
-              <button type='button' onClick={this.onEditUser}>
-                Edit User
-              </button>
+              {editMode ? (
+                <span>
+                  <button onClick={this.onSaveUser}>Save</button>
+                  <button onClick={this.onToggleEditMode}>Reset</button>
+                </span>
+              ) : (
+                <>
+                  <button onClick={this.onToggleEditMode}>Edit</button>
+                  <button type='button' onClick={this.onSendPasswordResetEmail}>
+                    Send Password Reset
+                  </button>
+                </>
+              )}
+
               <button
                 className='delete-button'
                 type='button'
