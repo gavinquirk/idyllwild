@@ -44,6 +44,7 @@ const App = () => (
 
         <Route exact path={ROUTES.ADMIN_USER_LIST} component={UserList} />
         <Route exact path={ROUTES.ADMIN_USER_DETAILS} component={UserItem} />
+        <Route exact path={ROUTES.ADMIN_ADD_USER} component={UserList} />
 
         <Route exact path={ROUTES.ADMIN_ARTICLE_LIST} component={UserList} />
         <Route exact path={ROUTES.ADMIN_ARTICLE_DETAILS} component={UserItem} />

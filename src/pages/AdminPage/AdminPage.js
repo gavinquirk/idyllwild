@@ -13,6 +13,7 @@ import './AdminPage.css';
 
 import AdminSideBar from '../../components/AdminSideBar/AdminSideBar';
 
+import AdminAddUser from '../../components/AdminAddUser/AdminAddUser';
 import AdminUserList from '../../components/AdminUserList/AdminUserList';
 import AdminUserItem from '../../components/AdminUserItem/AdminUserItem';
 
@@ -28,8 +29,6 @@ const AdminPage = () => (
   <div className='AdminPage'>
     <AdminSideBar />
     <div className='admin-content'>
-      {/* <h1>Admin</h1>
-      <p>The Admin Page is accessible by every signed in admin user.</p> */}
       <Switch>
         <Route exact path={ROUTES.ADMIN} component={AdminHome} />
         {/* User Routes */}
@@ -39,6 +38,7 @@ const AdminPage = () => (
           path={ROUTES.ADMIN_USER_DETAILS}
           component={AdminUserItem}
         />
+        <Route exact path={ROUTES.ADMIN_ADD_USER} component={AdminAddUser} />
         {/* Article Routes */}
         <Route
           exact

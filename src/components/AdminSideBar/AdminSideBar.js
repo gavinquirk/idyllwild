@@ -16,7 +16,7 @@ class AdminSideBar extends Component {
             <h4>Users</h4>
           </li>
           <li>
-            <a href='#'>Add a User</a>{' '}
+            <Link to={ROUTES.ADMIN_ADD_USER}>Add User</Link>
           </li>
           <li>
             <Link to={ROUTES.ADMIN_USER_LIST}>Manage Users</Link>

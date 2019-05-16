@@ -1,0 +1,61 @@
+/* .AddArticle {
+  grid-column: 4 / 10;
+} */
+
+.AdminAddUser-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.AdminAddUser-container textarea {
+  font-size: inherit;
+  min-height: 100px;
+
+  padding: 5px 10px;
+  border-radius: 5px;
+
+  width: 100%;
+
+  border: none;
+
+  margin: 5px 0;
+  outline: none;
+}
+
+.AdminAddUser-container label {
+  padding-bottom: 5px;
+}
+
+.AdminAddUser-container input {
+  padding: 5px 10px;
+  border-radius: 5px;
+
+  width: 100%;
+
+  border: none;
+
+  margin: 5px 0;
+  outline: none;
+}
+
+.AdminAddUser-container form button {
+  padding: 10px 30px;
+
+  margin: 15px 0;
+  background-color: var(--color-green-vibrant);
+
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+  align-self: center;
+}
+
+.AdminAddUser-container .admin-checkbox {
+  display: flex;
+}
+
+.AdminAddUser-container .admin-checkbox input {
+  width: auto;
+  margin-left: 20px;
+}

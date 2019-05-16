@@ -1,0 +1,54 @@
+.AdminAddUser {
+  display: flex;
+  flex-direction: column;
+  grid-column: 1 / -1;
+
+  align-items: center;
+}
+
+.AdminAddUser-container {
+  text-align: center;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.AdminAddUser form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  align-items: center;
+}
+
+.AdminAddUser form input {
+  padding: 5px 10px;
+  border-radius: 5px;
+
+  width: 100%;
+
+  border: none;
+
+  margin: 5px 0;
+}
+
+.AdminAddUser form button {
+  width: 50%;
+  padding: 5px 10px;
+
+  margin: 5px 0;
+  background-color: var(--color-green-vibrant);
+
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+.SignUpLink a {
+  text-decoration: none;
+  color: inherit;
+}
