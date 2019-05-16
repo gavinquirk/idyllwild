@@ -12,19 +12,22 @@ class AdminArticleList extends Component {
   };
 
   componentDidMount() {
-    console.log('Article List Mounted');
     this.setState({ loading: true });
-    this.props.firebase.articles().once('value', snapshot => {
-      const articlesObject = snapshot.val();
-      const articlesList = Object.keys(articlesObject).map(key => ({
-        ...articlesObject[key],
-        uid: key
-      }));
-      this.setState({
-        articles: articlesList,
-        loading: false
+    this.props.firebase
+      .articles()
+      .orderByChild('disabled') // Filter for articles which are not disabled
+      .equalTo(false || null)
+      .once('value', snapshot => {
+        const articlesObject = snapshot.val();
+        const articlesList = Object.keys(articlesObject).map(key => ({
+          ...articlesObject[key],
+          uid: key
+        }));
+        this.setState({
+          articles: articlesList,
+          loading: false
+        });
       });
-    });
   }
 
   render() {
