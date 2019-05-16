@@ -14,6 +14,7 @@ class AdminEventItem extends Component {
   componentDidMount() {
     // If event state is passed, don't query for event
     if (this.state.event) {
+      console.log(this.state.event);
       return;
     }
 
@@ -34,9 +35,16 @@ class AdminEventItem extends Component {
   //   console.log('Edit Event Details clicked...');
   // };
 
-  // onDeleteEvent = () => {
-  //   console.log('Delete Event clicked...');
-  // };
+  // Remove event from database
+  onRemoveEvent = uid => {
+    this.props.firebase
+      .event(uid)
+      .update({
+        disabled: true
+      })
+      .then(() => console.log('Successfully Disabled'))
+      .catch(error => console.log('error: ', error));
+  };
 
   render() {
     const { event, loading } = this.state;
@@ -68,7 +76,7 @@ class AdminEventItem extends Component {
               <button
                 className='delete-button'
                 type='button'
-                onClick={this.onDeleteEvent}
+                onClick={() => this.onRemoveEvent(event.uid)}
               >
                 Delete Event
               </button>

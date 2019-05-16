@@ -13,17 +13,21 @@ class AdminEventList extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    this.props.firebase.events().once('value', snapshot => {
-      const eventsObject = snapshot.val();
-      const eventsList = Object.keys(eventsObject).map(key => ({
-        ...eventsObject[key],
-        uid: key
-      }));
-      this.setState({
-        events: eventsList,
-        loading: false
+    this.props.firebase
+      .events()
+      .orderByChild('disabled') // Filter for events which are not disabled
+      .equalTo(false || null)
+      .once('value', snapshot => {
+        const eventsObject = snapshot.val();
+        const eventsList = Object.keys(eventsObject).map(key => ({
+          ...eventsObject[key],
+          uid: key
+        }));
+        this.setState({
+          events: eventsList,
+          loading: false
+        });
       });
-    });
   }
 
   render() {
