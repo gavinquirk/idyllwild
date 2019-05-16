@@ -8,11 +8,13 @@ class AdminArticleItem extends Component {
   state = {
     loading: false,
     article: null,
+    editMode: false,
+    editTitle: '',
+    editText: '',
     ...this.props.location.state
   };
 
   componentDidMount() {
-    console.log('ARTICLE ITEM MOUNTED');
     // If article state is passed, don't query for article
     if (this.state.article) {
       return;
@@ -21,6 +23,7 @@ class AdminArticleItem extends Component {
     this.setState({ loading: true });
 
     // Else, query db for article data
+    console.log('querying...');
     this.props.firebase
       .article(this.props.match.params.id)
       .once('value', snapshot => {
@@ -31,16 +34,68 @@ class AdminArticleItem extends Component {
       });
   }
 
-  onEditUserDetails = () => {
-    console.log('Edit User Details clicked...');
+  // State update for forms
+  onChangeEditTitle = event => {
+    this.setState({ editTitle: event.target.value });
   };
 
-  onDeleteUser = () => {
-    console.log('Delete User clicked...');
+  onChangeEditText = event => {
+    this.setState({ editText: event.target.value });
+  };
+
+  // Toggle edit mode, set edit state to article state
+  onToggleEditMode = () => {
+    this.setState(state => ({
+      editMode: !state.editMode,
+      editText: this.state.article.text,
+      editTitle: this.state.article.title
+    }));
+  };
+
+  onSaveArticle = () => {
+    // Call onEditArticle with edit state as args, set edit mode to false
+    this.onEditArticle(
+      this.state.article,
+      this.state.editTitle,
+      this.state.editText
+    );
+    this.setState({ editMode: false });
+  };
+
+  onEditArticle = (article, title, text) => {
+    // Destructure uid and snapshot data
+    const { uid, ...articleSnapshot } = article;
+
+    const updatedArticle = {
+      ...articleSnapshot,
+      title,
+      text,
+      editedAt: this.props.firebase.serverValue.TIMESTAMP
+    };
+
+    // Update article with new data, add editedAt timestamp, update state
+    this.props.firebase
+      .article('-Lf0dWEvp_lLw6XND583')
+      .set(updatedArticle)
+      .then(
+        this.setState({ article: updatedArticle }),
+        console.log('Successfully Updated')
+      )
+      .catch(error => console.log('error: ', error));
+  };
+
+  // Remove article from database
+  // TODO: add 'disabled' value instead of removing entirely
+  onRemoveArticle = uid => {
+    this.props.firebase
+      .article(uid)
+      .remove()
+      .then(() => console.log('Successfully Removed'))
+      .catch(error => console.log('error: ', error));
   };
 
   render() {
-    const { article, loading } = this.state;
+    const { article, loading, editMode, editTitle, editText } = this.state;
 
     return (
       <div className='AdminArticleItem'>
@@ -53,23 +108,48 @@ class AdminArticleItem extends Component {
               <strong>Article ID:</strong> {article.uid}
             </span>
             <span>
-              <strong>Title:</strong> {article.title}
-            </span>
-            <span>
               <strong>Owner:</strong> {article.userId}
             </span>
-            <span>
-              <strong>Text:</strong> {article.text}
-            </span>
 
+            {editMode ? (
+              <>
+                <input
+                  type='text'
+                  value={editTitle}
+                  onChange={this.onChangeEditTitle}
+                />
+                <input
+                  type='text'
+                  value={editText}
+                  onChange={this.onChangeEditText}
+                />
+              </>
+            ) : (
+              <>
+                <span>
+                  <strong>Title:</strong> {article.title}
+                </span>
+                <span>
+                  <strong>Text:</strong> {article.text}
+                </span>
+              </>
+            )}
+
+            {/* Buttons */}
             <div className='article-buttons'>
-              <button type='button' onClick={this.onEditArticleDetails}>
-                Edit Article
-              </button>
+              {/* Show Save and Reset buttons if in edit mode, Edit button if not */}
+              {editMode ? (
+                <span>
+                  <button onClick={this.onSaveArticle}>Save</button>
+                  <button onClick={this.onToggleEditMode}>Reset</button>
+                </span>
+              ) : (
+                <button onClick={this.onToggleEditMode}>Edit</button>
+              )}
               <button
                 className='delete-button'
                 type='button'
-                onClick={this.onDeleteArticle}
+                onClick={() => this.onRemoveArticle(article.uid)}
               >
                 Delete article
               </button>
