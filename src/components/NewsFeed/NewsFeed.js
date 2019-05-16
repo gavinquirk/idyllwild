@@ -29,9 +29,11 @@ class NewsFeedBase extends Component {
     this.setState({ loading: true });
     this.props.firebase
       .articles()
-      .orderByChild('createdAt')
+      .orderByChild('disabled') // Filter for articles which are not disabled
+      .equalTo(false || null)
+      // .orderByChild('createdAt')
       // .limitToLast(this.state.limit)
-      .on('value', snapshot => {
+      .once('value', snapshot => {
         const articleObject = snapshot.val();
 
         if (articleObject) {
