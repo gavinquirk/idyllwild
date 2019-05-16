@@ -37,7 +37,7 @@ class AdminSideBar extends Component {
             <Link to={ROUTES.ADMIN_ADD_EVENT}>Add Event</Link>
           </li>
           <li>
-            <a href='#'>Manage Events</a>{' '}
+            <Link to={ROUTES.ADMIN_EVENT_LIST}>Manage Events</Link>
           </li>
         </ul>
       </div>

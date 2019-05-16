@@ -16,4 +16,6 @@ export const ADMIN_ARTICLE_LIST = '/admin/articles';
 export const ADMIN_ARTICLE_DETAILS = '/admin/articles/:id';
 export const ADMIN_ADD_ARTICLE = '/admin/add-article';
 
+export const ADMIN_EVENT_LIST = '/admin/events';
+export const ADMIN_EVENT_DETAILS = '/admin/events/:id';
 export const ADMIN_ADD_EVENT = '/admin/add-event';

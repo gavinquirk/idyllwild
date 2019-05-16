@@ -20,6 +20,8 @@ import AdminAddArticle from '../../components/AdminAddArticle/AdminAddArticle';
 import AdminArticleList from '../../components/AdminArticleList/AdminArticleList';
 import AdminArticleItem from '../../components/AdminArticleItem/AdminArticleItem';
 
+import AdminEventList from '../../components/AdminEventList/AdminEventList';
+import AdminEventItem from '../../components/AdminEventItem/AdminEventItem';
 import AdminAddEvent from '../../components/AdminAddEvent/AdminAddEvent';
 
 const AdminPage = () => (
@@ -54,6 +56,16 @@ const AdminPage = () => (
           component={AdminAddArticle}
         />
         {/* Event Routes */}
+        <Route
+          exact
+          path={ROUTES.ADMIN_EVENT_LIST}
+          component={AdminEventList}
+        />
+        <Route
+          exact
+          path={ROUTES.ADMIN_EVENT_DETAILS}
+          component={AdminEventItem}
+        />
         <Route exact path={ROUTES.ADMIN_ADD_EVENT} component={AdminAddEvent} />
       </Switch>
     </div>
