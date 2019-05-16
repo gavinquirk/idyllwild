@@ -39,12 +39,23 @@ class AdminUserItem extends Component {
     this.props.firebase.doPasswordReset(this.state.user.email);
   };
 
-  onEditUserDetails = () => {
+  onEditUser = () => {
     console.log('Edit User Details clicked...');
   };
 
   onDeleteUser = () => {
     console.log('Delete User clicked...');
+  };
+
+  // Set user to disabled
+  onRemoveUser = uid => {
+    this.props.firebase
+      .user(uid)
+      .update({
+        disabled: true
+      })
+      .then(() => console.log('Successfully Disabled'))
+      .catch(error => console.log('error: ', error));
   };
 
   render() {
@@ -70,13 +81,13 @@ class AdminUserItem extends Component {
               <button type='button' onClick={this.onSendPasswordResetEmail}>
                 Send Password Reset
               </button>
-              <button type='button' onClick={this.onEditUserDetails}>
-                Edit User Details
+              <button type='button' onClick={this.onEditUser}>
+                Edit User
               </button>
               <button
                 className='delete-button'
                 type='button'
-                onClick={this.onDeleteUser}
+                onClick={() => this.onRemoveUser(user.uid)}
               >
                 Delete User
               </button>

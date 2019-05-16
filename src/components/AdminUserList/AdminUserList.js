@@ -12,23 +12,24 @@ class AdminUserList extends Component {
   };
 
   componentDidMount() {
-    console.log('User List Mounted');
     this.setState({ loading: true });
-    this.props.firebase.users().on('value', snapshot => {
-      const usersObject = snapshot.val();
-      const usersList = Object.keys(usersObject).map(key => ({
-        ...usersObject[key],
-        uid: key
-      }));
-      this.setState({
-        users: usersList,
-        loading: false
+    this.props.firebase
+      .users()
+      .orderByChild('disabled') // Filter for users which are not disabled
+      .equalTo(false || null)
+      .once('value', snapshot => {
+        const usersObject = snapshot.val();
+        const usersList = Object.keys(usersObject).map(key => ({
+          ...usersObject[key],
+          uid: key
+        }));
+        this.setState({
+          users: usersList,
+          loading: false
+        });
       });
-    });
   }
-  componentWillUnmount() {
-    this.props.firebase.users().off();
-  }
+
   render() {
     const { users, loading } = this.state;
 
