@@ -23,7 +23,6 @@ class AdminArticleItem extends Component {
     this.setState({ loading: true });
 
     // Else, query db for article data
-    console.log('querying...');
     this.props.firebase
       .article(this.props.match.params.id)
       .once('value', snapshot => {
@@ -85,12 +84,13 @@ class AdminArticleItem extends Component {
   };
 
   // Remove article from database
-  // TODO: add 'disabled' value instead of removing entirely
   onRemoveArticle = uid => {
     this.props.firebase
       .article(uid)
-      .remove()
-      .then(() => console.log('Successfully Removed'))
+      .update({
+        disabled: true
+      })
+      .then(() => console.log('Successfully Disabled'))
       .catch(error => console.log('error: ', error));
   };
 
@@ -100,6 +100,7 @@ class AdminArticleItem extends Component {
     return (
       <div className='AdminArticleItem'>
         <h1 className='heading'>Article: {article.title}</h1>
+        {/* Show loading */}
         {loading && <div>Loading ...</div>}
 
         {article && (
@@ -110,7 +111,7 @@ class AdminArticleItem extends Component {
             <span>
               <strong>Owner:</strong> {article.userId}
             </span>
-
+            {/* editMode conditional rendering */}
             {editMode ? (
               <>
                 <input
@@ -137,7 +138,7 @@ class AdminArticleItem extends Component {
 
             {/* Buttons */}
             <div className='article-buttons'>
-              {/* Show Save and Reset buttons if in edit mode, Edit button if not */}
+              {/* Edit buttons conditional rendering */}
               {editMode ? (
                 <span>
                   <button onClick={this.onSaveArticle}>Save</button>
