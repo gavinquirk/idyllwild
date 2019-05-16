@@ -1,0 +1,35 @@
+.AdminArticleList h1 {
+  display: block;
+  border-bottom: 2px var(--font-light) solid;
+}
+
+.AdminArticleList ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.AdminArticleList li {
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+  margin: 10px 0;
+
+  border: 1px var(--font-light) solid;
+  border-radius: 5px;
+}
+
+.AdminArticleList li span {
+  padding: 10px;
+}
+
+.article-details-btn {
+  color: inherit;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: var(--color-blue-medium);
+}
+
+.article-details-btn:hover {
+  background-color: var(--color-blue-vibrant);
+}

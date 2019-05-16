@@ -10,3 +10,8 @@
 
   margin: 0 25px;
 }
+
+.AdminHome h1 {
+  border-bottom: 2px var(--font-light) solid;
+  margin-bottom: 20px;
+}

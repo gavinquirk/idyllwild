@@ -6,13 +6,13 @@ import { withFirebase } from '../../components/Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 
-import './SignUpPage.css';
+import './AdminAddUser.css';
 
-const SignUpPage = () => (
-  <div className='SignUpPage'>
-    <div className='SignUpPage-container'>
-      <h1 className='heading heading-primary underline'>Sign Up</h1>
-      <SignUpForm />
+const AdminAddUser = () => (
+  <div className='AdminAddUser'>
+    <div className='AdminAddUser-container'>
+      <h1 className='heading heading-primary underline'>Add User</h1>
+      <AddUserForm />
     </div>
   </div>
 );
@@ -27,7 +27,7 @@ const INITIAL_STATE = {
   error: null
 };
 
-class SignUpFormBase extends Component {
+class AddUserFormBase extends Component {
   state = { ...INITIAL_STATE };
 
   onSubmit = event => {
@@ -53,7 +53,7 @@ class SignUpFormBase extends Component {
       })
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.DASHBOARD);
+        this.props.history.push(ROUTES.ADMIN);
       })
       .catch(error => {
         this.setState({ error });
@@ -66,8 +66,19 @@ class SignUpFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  onChangeCheckbox = event => {
+    this.setState({ [event.target.name]: event.target.checked });
+  };
+
   render() {
-    const { username, email, passwordOne, passwordTwo, error } = this.state;
+    const {
+      username,
+      email,
+      passwordOne,
+      passwordTwo,
+      isAdmin,
+      error
+    } = this.state;
 
     const isInvalid =
       passwordOne !== passwordTwo ||
@@ -105,8 +116,17 @@ class SignUpFormBase extends Component {
           type='password'
           placeholder='Confirm Password'
         />
+        <div className='admin-checkbox'>
+          <label>Make User Admin:</label>
+          <input
+            name='isAdmin'
+            type='checkbox'
+            checked={isAdmin}
+            onChange={this.onChangeCheckbox}
+          />
+        </div>
         <button disabled={isInvalid} type='submit'>
-          Sign Up
+          Add User
         </button>
 
         {error && <p>{error.message}</p>}
@@ -115,17 +135,9 @@ class SignUpFormBase extends Component {
   }
 }
 
-const SignUpLink = () => (
-  <button className='SignUpLink'>
-    <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-  </button>
-);
-
-const SignUpForm = compose(
+const AddUserForm = compose(
   withRouter,
   withFirebase
-)(SignUpFormBase);
+)(AddUserFormBase);
 
-export default SignUpPage;
-
-export { SignUpForm, SignUpLink };
+export default AdminAddUser;
