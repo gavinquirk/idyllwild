@@ -15,6 +15,8 @@ import './AdminPage.css';
 import AdminSideBar from '../../components/AdminSideBar/AdminSideBar';
 import AdminAddEvent from '../../pages/AdminPage/AddEvent/AddEvent';
 
+// TEST FOR GITHUB BRANCH PROTECTION
+
 const AdminPage = () => (
   <div className='AdminPage'>
     <AdminSideBar />
