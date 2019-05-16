@@ -1,13 +1,13 @@
-.AddArticle {
+/* .AddArticle {
   grid-column: 4 / 10;
-}
+} */
 
-.AddArticle-container form {
+.AdminAddUser-container form {
   display: flex;
   flex-direction: column;
 }
 
-.AddArticle-container textarea {
+.AdminAddUser-container textarea {
   font-size: inherit;
   min-height: 100px;
 
@@ -22,11 +22,11 @@
   outline: none;
 }
 
-.AddArticle-container label {
+.AdminAddUser-container label {
   padding-bottom: 5px;
 }
 
-.AddArticle-container input {
+.AdminAddUser-container input {
   padding: 5px 10px;
   border-radius: 5px;
 
@@ -38,7 +38,7 @@
   outline: none;
 }
 
-.AddArticle-container form button {
+.AdminAddUser-container form button {
   padding: 10px 30px;
 
   margin: 15px 0;
@@ -49,4 +49,13 @@
 
   cursor: pointer;
   align-self: center;
+}
+
+.AdminAddUser-container .admin-checkbox {
+  display: flex;
+}
+
+.AdminAddUser-container .admin-checkbox input {
+  width: auto;
+  margin-left: 20px;
 }

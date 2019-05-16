@@ -1,0 +1,26 @@
+.AdminArticleItem h1 {
+  border-bottom: 2px var(--font-light) solid;
+}
+
+.AdminArticleItem .list {
+  display: flex;
+  flex-direction: column;
+}
+
+.AdminArticleItem .list span {
+  margin: 10px 0;
+}
+
+.AdminArticleItem .article-buttons button {
+  outline: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 0 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.AdminArticleItem .article-buttons .delete-button {
+  background-color: var(--color-red-vibrant);
+  color: inherit;
+}

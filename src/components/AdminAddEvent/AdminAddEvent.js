@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
-import MapSearchBar from '../../../components/MapSearchBar/MapSearchBar';
-import MapContainer from '../../../components/MapContainer/MapContainer';
-import { withFirebase } from '../../../components/Firebase';
+import MapSearchBar from '../MapSearchBar/MapSearchBar';
+import MapContainer from '../MapContainer/MapContainer';
+import { withFirebase } from '../Firebase';
 import {
   withAuthorization,
   withEmailVerification,
   AuthUserContext
-} from '../../../components/Session';
+} from '../Session';
 
-import * as ROLES from '../../../constants/roles';
-import * as ROUTES from '../../../constants/routes';
+import * as ROLES from '../../constants/roles';
+import * as ROUTES from '../../constants/routes';
 
-import './AddEvent.css';
+import './AdminAddEvent.css';
 
-class AddEventBase extends Component {
+class AdminAddEventBase extends Component {
   state = {
     text: '',
     title: '',
@@ -124,11 +124,11 @@ class AddEventBase extends Component {
   }
 }
 
-const AddEvent = withFirebase(AddEventBase);
+const AdminAddEvent = withFirebase(AdminAddEventBase);
 
 const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN]; // If user is authenticated, and admin role is not null
 
 export default compose(
   withEmailVerification,
   withAuthorization(condition)
-)(AddEvent);
+)(AdminAddEvent);
