@@ -63,7 +63,7 @@ class AdminArticleItem extends Component {
 
   onEditArticle = (article, title, text) => {
     // Destructure uid and snapshot data
-    const { uid, ...articleSnapshot } = article;
+    const { ...articleSnapshot } = article;
 
     const updatedArticle = {
       ...articleSnapshot,
@@ -74,7 +74,7 @@ class AdminArticleItem extends Component {
 
     // Update article with new data, add editedAt timestamp, update state
     this.props.firebase
-      .article('-Lf0dWEvp_lLw6XND583')
+      .article(article.uid)
       .set(updatedArticle)
       .then(
         this.setState({ article: updatedArticle }),
