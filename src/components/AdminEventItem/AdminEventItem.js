@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as ROUTES from '../../constants/routes';
 
 import { withFirebase } from '../Firebase';
 
@@ -45,7 +46,7 @@ class AdminEventItem extends Component {
       .update({
         disabled: true
       })
-      .then(() => console.log('Successfully Disabled'))
+      .then(() => this.props.history.push(ROUTES.ADMIN))
       .catch(error => console.log('error: ', error));
   };
 
