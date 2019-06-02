@@ -32,12 +32,16 @@ class SingleEventBase extends Component {
 
   render() {
     const { event, loading } = this.state;
+
     return (
       <div className='SingleEvent'>
         {loading && <div>Loading ...</div>}
         {event && (
           <>
             <h1>{event.title}</h1>
+            <p>
+              Date: {event.date} Time: {event.time}
+            </p>
             <p>{event.text}</p>
             <MapContainer
               style={{

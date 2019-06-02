@@ -21,6 +21,8 @@ class AdminAddEventBase extends Component {
     lat: null,
     lng: null,
     address: '',
+    date: '',
+    time: '',
     locationName: '',
     error: null
   };
@@ -42,6 +44,8 @@ class AdminAddEventBase extends Component {
         text: this.state.text,
         lat: this.state.lat,
         lng: this.state.lng,
+        date: this.state.date,
+        time: this.state.time,
         address: this.state.address,
         locationName: this.state.locationName,
         userId: authUser.uid,
@@ -92,6 +96,12 @@ class AdminAddEventBase extends Component {
                   type='textarea'
                   onChange={this.onChange}
                 />
+                {/* Date */}
+                <label className='heading'>Date (mm/dd/yy)</label>
+                <input name='date' type='date' onChange={this.onChange} />
+                {/* Time */}
+                <label className='heading'>Time (0:00 AM/PM)</label>
+                <input name='time' type='time' onChange={this.onChange} />
                 {/* Autocomplete search and map */}
                 <label className='heading'>Location</label>
                 <MapSearchBar onPlaceLoaded={this.onPlaceLoaded} />
