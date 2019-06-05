@@ -86,7 +86,7 @@ class EventsBase extends Component {
                 </Link>
 
                 <span className='event--date'>
-                  Date: {this.formatTime(event.createdAt)}
+                  Date: {event.date} at {event.time}
                 </span>
               </div>
               <div className='event--content'>

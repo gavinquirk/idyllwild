@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
+import moment from 'moment';
+
 import MapSearchBar from '../MapSearchBar/MapSearchBar';
 import MapContainer from '../MapContainer/MapContainer';
 import { withFirebase } from '../Firebase';
@@ -36,6 +38,10 @@ class AdminAddEventBase extends Component {
   }
 
   onCreateEvent = (event, authUser) => {
+    // Convert date format
+    const formattedDate = moment(this.state.date, 'YYYY - MM - DD').format(
+      'dddd, MMMM Do, YYYY'
+    );
     // Post form data to events array in DB
     this.props.firebase
       .events()
@@ -44,7 +50,7 @@ class AdminAddEventBase extends Component {
         text: this.state.text,
         lat: this.state.lat,
         lng: this.state.lng,
-        date: this.state.date,
+        date: formattedDate,
         time: this.state.time,
         address: this.state.address,
         locationName: this.state.locationName,
