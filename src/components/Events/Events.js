@@ -60,7 +60,7 @@ class EventsBase extends Component {
     return (
       <div
         className='Events'
-        style={this.props.expandState ? { width: '80%' } : { width: '20%' }}
+        style={this.props.expandState ? { width: '50%' } : { width: '50%' }}
       >
         <span className='heading-span underline'>
           <h1 className='heading heading-primary'>Events</h1>
@@ -86,7 +86,7 @@ class EventsBase extends Component {
                 </Link>
 
                 <span className='event--date'>
-                  {this.formatTime(event.createdAt)}
+                  Date: {this.formatTime(event.createdAt)}
                 </span>
               </div>
               <div className='event--content'>

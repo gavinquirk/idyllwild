@@ -61,7 +61,7 @@ class NewsFeedBase extends Component {
     return (
       <div
         className='NewsFeed'
-        style={this.props.expandState ? { width: '20%' } : { width: '80%' }}
+        style={this.props.expandState ? { width: '50%' } : { width: '50%' }}
       >
         <span className='heading-span underline'>
           <h1 className='heading heading-primary'>News</h1>
@@ -86,7 +86,7 @@ class NewsFeedBase extends Component {
                   <h3 className='heading'>{article.title}</h3>
                 </Link>
                 <span className='article--date'>
-                  {this.formatTime(article.createdAt)}
+                  Posted: {this.formatTime(article.createdAt)}
                 </span>
               </div>
               <div className='article--content'>
