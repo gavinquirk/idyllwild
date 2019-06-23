@@ -41,7 +41,8 @@ class AdminEventItem extends Component {
     this.setState(state => ({
       editMode: !state.editMode,
       editTitle: this.state.event.title,
-      editText: this.state.event.text
+      editText: this.state.event.text,
+      editTime: this.state.event.time
     }));
   };
 
@@ -60,14 +61,13 @@ class AdminEventItem extends Component {
     this.onEditEvent(
       this.state.event,
       this.state.editTitle,
-      this.state.editText
+      this.state.editText,
+      this.state.editTime
     );
     this.setState({ editMode: false });
   };
 
-  onEditEvent = (event, title, text) => {
-    console.log(title);
-    console.log(text);
+  onEditEvent = (event, title, text, time) => {
     // Destructure and snapshot data
     const { ...eventSnapshot } = event;
 
@@ -75,6 +75,7 @@ class AdminEventItem extends Component {
       ...eventSnapshot,
       title,
       text,
+      time,
       editedAt: this.props.firebase.serverValue.TIMESTAMP
     };
 
@@ -88,23 +89,26 @@ class AdminEventItem extends Component {
       .catch(error => console.log('error: ', error));
   };
 
-  onChangeEditTitle = event => {
-    this.setState({ editTitle: event.target.value });
-  };
-
-  onChangeEditText = event => {
-    this.setState({ editText: event.target.value });
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
-    const { event, loading, editTitle, editText, editMode } = this.state;
+    const {
+      event,
+      loading,
+      editTitle,
+      editText,
+      editTime,
+      editMode
+    } = this.state;
 
     return (
       <div className='AdminEventItem'>
         <h1 className='heading'>Event: {event.title}</h1>
         {loading && <div>Loading ...</div>}
 
-        {event && (
+        {event && !loading && (
           <div className='list'>
             <span>
               <strong>Event ID:</strong> {event.uid}
@@ -118,14 +122,22 @@ class AdminEventItem extends Component {
             {editMode ? (
               <>
                 <input
+                  name='editTitle'
                   type='text'
                   value={editTitle}
-                  onChange={this.onChangeEditTitle}
+                  onChange={this.onChange}
                 />
                 <input
+                  name='editText'
                   type='text'
                   value={editText}
-                  onChange={this.onChangeEditText}
+                  onChange={this.onChange}
+                />
+                <input
+                  name='editTime'
+                  type='time'
+                  value={editTime}
+                  onChange={this.onChange}
                 />
               </>
             ) : (
@@ -135,6 +147,9 @@ class AdminEventItem extends Component {
                 </span>
                 <span>
                   <strong>Text:</strong> {event.text}
+                </span>
+                <span>
+                  <strong>Time:</strong> {event.time}
                 </span>
               </>
             )}
