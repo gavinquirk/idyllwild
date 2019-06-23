@@ -14,6 +14,7 @@ class AdminEventItem extends Component {
     editText: '',
     editLocation: '',
     editTime: '',
+    editDate: '',
     ...this.props.location.state
   };
 
@@ -42,7 +43,8 @@ class AdminEventItem extends Component {
       editMode: !state.editMode,
       editTitle: this.state.event.title,
       editText: this.state.event.text,
-      editTime: this.state.event.time
+      editTime: this.state.event.time,
+      editDate: this.state.event.date
     }));
   };
 
@@ -62,12 +64,13 @@ class AdminEventItem extends Component {
       this.state.event,
       this.state.editTitle,
       this.state.editText,
-      this.state.editTime
+      this.state.editTime,
+      this.state.editDate
     );
     this.setState({ editMode: false });
   };
 
-  onEditEvent = (event, title, text, time) => {
+  onEditEvent = (event, title, text, time, date) => {
     // Destructure and snapshot data
     const { ...eventSnapshot } = event;
 
@@ -76,8 +79,11 @@ class AdminEventItem extends Component {
       title,
       text,
       time,
+      date,
       editedAt: this.props.firebase.serverValue.TIMESTAMP
     };
+
+    console.log(updatedEvent);
 
     this.props.firebase
       .event(event.uid)
@@ -100,6 +106,7 @@ class AdminEventItem extends Component {
       editTitle,
       editText,
       editTime,
+      editDate,
       editMode
     } = this.state;
 
@@ -139,6 +146,12 @@ class AdminEventItem extends Component {
                   value={editTime}
                   onChange={this.onChange}
                 />
+                <input
+                  name='editDate'
+                  type='date'
+                  value={editDate}
+                  onChange={this.onChange}
+                />
               </>
             ) : (
               <>
@@ -150,6 +163,9 @@ class AdminEventItem extends Component {
                 </span>
                 <span>
                   <strong>Time:</strong> {event.time}
+                </span>
+                <span>
+                  <strong>Date:</strong> {event.date}
                 </span>
               </>
             )}
