@@ -11,6 +11,10 @@
   margin: 10px 0;
 }
 
+.AdminEventItem .event-buttons {
+  margin: 10px 0;
+}
+
 .AdminEventItem .event-buttons button {
   outline: none;
   border-radius: 5px;
@@ -23,4 +27,20 @@
 .AdminEventItem .event-buttons .delete-button {
   background-color: var(--color-red-vibrant);
   color: inherit;
+}
+
+.AdminEventItem .event-buttons .save-button {
+  background-color: var(--color-green-vibrant);
+}
+
+.AdminEventItem input {
+  padding: 5px 10px;
+  border-radius: 5px;
+
+  width: 100%;
+
+  border: none;
+
+  margin: 5px 0;
+  outline: none;
 }

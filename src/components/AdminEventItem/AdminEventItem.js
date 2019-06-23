@@ -9,14 +9,19 @@ class AdminEventItem extends Component {
   state = {
     loading: false,
     event: null,
+    editMode: false,
+    editTitle: '',
+    editText: '',
+    editLocation: '',
+    editTime: '',
     ...this.props.location.state
   };
 
   componentDidMount() {
     // If event state is passed, don't query for event
-    if (this.state.event) {
-      return;
-    }
+    // if (this.state.event) {
+    //   return;
+    // }
 
     this.setState({ loading: true });
 
@@ -31,15 +36,16 @@ class AdminEventItem extends Component {
       });
   }
 
-  // onEditEventDetails = () => {
-  //   console.log('Edit Event Details clicked...');
-  // };
+  // Toggle edit mode
+  onToggleEditMode = () => {
+    this.setState(state => ({
+      editMode: !state.editMode,
+      editTitle: this.state.event.title,
+      editText: this.state.event.text
+    }));
+  };
 
-  // onDeleteEvent = () => {
-  //   console.log('Delete Event clicked...');
-  // };
-
-  // Remove article from database
+  // Remove event from database
   onRemoveEvent = uid => {
     this.props.firebase
       .event(uid)
@@ -50,8 +56,48 @@ class AdminEventItem extends Component {
       .catch(error => console.log('error: ', error));
   };
 
+  onSaveEvent = () => {
+    this.onEditEvent(
+      this.state.event,
+      this.state.editTitle,
+      this.state.editText
+    );
+    this.setState({ editMode: false });
+  };
+
+  onEditEvent = (event, title, text) => {
+    console.log(title);
+    console.log(text);
+    // Destructure and snapshot data
+    const { ...eventSnapshot } = event;
+
+    const updatedEvent = {
+      ...eventSnapshot,
+      title,
+      text,
+      editedAt: this.props.firebase.serverValue.TIMESTAMP
+    };
+
+    this.props.firebase
+      .event(event.uid)
+      .set(updatedEvent)
+      .then(
+        this.setState({ event: updatedEvent }),
+        console.log('Successfully Updated')
+      )
+      .catch(error => console.log('error: ', error));
+  };
+
+  onChangeEditTitle = event => {
+    this.setState({ editTitle: event.target.value });
+  };
+
+  onChangeEditText = event => {
+    this.setState({ editText: event.target.value });
+  };
+
   render() {
-    const { event, loading } = this.state;
+    const { event, loading, editTitle, editText, editMode } = this.state;
 
     return (
       <div className='AdminEventItem'>
@@ -64,19 +110,50 @@ class AdminEventItem extends Component {
               <strong>Event ID:</strong> {event.uid}
             </span>
             <span>
-              <strong>Title:</strong> {event.title}
-            </span>
-            <span>
               <strong>Owner:</strong> {event.userId}
             </span>
-            <span>
-              <strong>Text:</strong> {event.text}
-            </span>
+
+            {/* Conditional Rendering */}
+            {/* Inputs */}
+            {editMode ? (
+              <>
+                <input
+                  type='text'
+                  value={editTitle}
+                  onChange={this.onChangeEditTitle}
+                />
+                <input
+                  type='text'
+                  value={editText}
+                  onChange={this.onChangeEditText}
+                />
+              </>
+            ) : (
+              <>
+                <span>
+                  <strong>Title:</strong> {event.title}
+                </span>
+                <span>
+                  <strong>Text:</strong> {event.text}
+                </span>
+              </>
+            )}
 
             <div className='event-buttons'>
-              <button type='button' onClick={this.onEditEventDetails}>
-                Edit Event
-              </button>
+              {/* Buttons */}
+              {/* Edit Mode */}
+              {editMode ? (
+                <span>
+                  <button className='save-button' onClick={this.onSaveEvent}>
+                    Save
+                  </button>
+                  <button onClick={this.onToggleEditMode}>Cancel</button>
+                </span>
+              ) : (
+                // Not edit mode
+                <button onClick={this.onToggleEditMode}>Edit</button>
+              )}
+
               <button
                 className='delete-button'
                 type='button'

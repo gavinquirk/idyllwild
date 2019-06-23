@@ -33,6 +33,8 @@ class SingleEventBase extends Component {
   render() {
     const { event, loading } = this.state;
 
+    console.log(event);
+
     return (
       <div className='SingleEvent'>
         {loading && <div>Loading ...</div>}
