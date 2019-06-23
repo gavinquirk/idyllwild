@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import * as ROUTES from '../../constants/routes';
 
 import { withFirebase } from '../Firebase';
 
@@ -84,7 +83,7 @@ class AdminUserItem extends Component {
       .update({
         disabled: true
       })
-      .then(() => this.props.history.push(ROUTES.ADMIN))
+      .then(() => console.log('Successfully Disabled'))
       .catch(error => console.log('error: ', error));
   };
 
@@ -121,8 +120,10 @@ class AdminUserItem extends Component {
             <div className='user-buttons'>
               {editMode ? (
                 <span>
-                  <button onClick={this.onSaveUser}>Save</button>
-                  <button onClick={this.onToggleEditMode}>Reset</button>
+                  <button className='save-button' onClick={this.onSaveUser}>
+                    Save
+                  </button>
+                  <button onClick={this.onToggleEditMode}>Cancel</button>
                 </span>
               ) : (
                 <>

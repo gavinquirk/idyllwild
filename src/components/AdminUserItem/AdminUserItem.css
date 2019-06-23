@@ -11,6 +11,10 @@
   margin: 10px 0;
 }
 
+.AdminUserItem .user-buttons {
+  margin: 10px 0;
+}
+
 .AdminUserItem .user-buttons button {
   outline: none;
   border-radius: 5px;
@@ -23,4 +27,20 @@
 .AdminUserItem .user-buttons .delete-button {
   background-color: var(--color-red-vibrant);
   color: inherit;
+}
+
+.AdminUserItem .user-buttons .save-button {
+  background-color: var(--color-green-vibrant);
+}
+
+.AdminUserItem input {
+  padding: 5px 10px;
+  border-radius: 5px;
+
+  width: 100%;
+
+  border: none;
+
+  margin: 5px 0;
+  outline: none;
 }
