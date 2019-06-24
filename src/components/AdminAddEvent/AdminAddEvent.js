@@ -68,12 +68,14 @@ class AdminAddEventBase extends Component {
 
   onPlaceLoaded = place => {
     // Set state with new map data
+    console.log('test', place);
     this.setState({
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng(),
       address: place.formatted_address,
       locationName: place.name
     });
+    console.log(this.state);
   };
 
   onChange = event => {

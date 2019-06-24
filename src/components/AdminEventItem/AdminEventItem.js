@@ -5,6 +5,9 @@ import { withFirebase } from '../Firebase';
 
 import './AdminEventItem.css';
 
+import MapSearchBar from '../MapSearchBar/MapSearchBar';
+import MapContainer from '../MapContainer/MapContainer';
+
 class AdminEventItem extends Component {
   state = {
     loading: false,
@@ -15,6 +18,10 @@ class AdminEventItem extends Component {
     editLocation: '',
     editTime: '',
     editDate: '',
+    lat: null,
+    lng: null,
+    address: '',
+    locationName: '',
     ...this.props.location.state
   };
 
@@ -32,6 +39,10 @@ class AdminEventItem extends Component {
       .once('value', snapshot => {
         this.setState({
           event: snapshot.val(),
+          lat: snapshot.val().lat,
+          lng: snapshot.val().lng,
+          address: snapshot.val().address,
+          locationName: snapshot.val().locationName,
           loading: false
         });
       });
@@ -59,18 +70,34 @@ class AdminEventItem extends Component {
       .catch(error => console.log('error: ', error));
   };
 
+  // Call edit event, exit edit mode
   onSaveEvent = () => {
     this.onEditEvent(
       this.state.event,
       this.state.editTitle,
       this.state.editText,
       this.state.editTime,
-      this.state.editDate
+      this.state.editDate,
+      this.state.lat,
+      this.state.lng,
+      this.state.address,
+      this.state.locationName
     );
     this.setState({ editMode: false });
   };
 
-  onEditEvent = (event, title, text, time, date) => {
+  // Update Database
+  onEditEvent = (
+    event,
+    title,
+    text,
+    time,
+    date,
+    lat,
+    lng,
+    address,
+    locationName
+  ) => {
     // Destructure and snapshot data
     const { ...eventSnapshot } = event;
 
@@ -80,6 +107,10 @@ class AdminEventItem extends Component {
       text,
       time,
       date,
+      lat,
+      lng,
+      address,
+      locationName,
       editedAt: this.props.firebase.serverValue.TIMESTAMP
     };
 
@@ -89,14 +120,38 @@ class AdminEventItem extends Component {
       .event(event.uid)
       .set(updatedEvent)
       .then(
-        this.setState({ event: updatedEvent }),
+        this.setState({
+          event: updatedEvent,
+          title,
+          text,
+          time,
+          date,
+          lat,
+          lng,
+          address,
+          locationName
+        }),
         console.log('Successfully Updated')
       )
       .catch(error => console.log('error: ', error));
   };
 
+  // Handle text/state changes from forms
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  // Handle map loaded
+  onPlaceLoaded = place => {
+    // Set state with new map data
+    this.setState({
+      lat: place.geometry.location.lat(),
+      lng: place.geometry.location.lng(),
+      address: place.formatted_address,
+      locationName: place.name
+    });
+
+    console.log(this.state);
   };
 
   render() {
@@ -107,8 +162,14 @@ class AdminEventItem extends Component {
       editText,
       editTime,
       editDate,
-      editMode
+      editMode,
+      lat,
+      lng,
+      locationName,
+      address
     } = this.state;
+
+    console.log(event.uid);
 
     return (
       <div className='AdminEventItem'>
@@ -128,30 +189,36 @@ class AdminEventItem extends Component {
             {/* Inputs */}
             {editMode ? (
               <>
+                <label>Title</label>
                 <input
                   name='editTitle'
                   type='text'
                   value={editTitle}
                   onChange={this.onChange}
                 />
+                <label>Text</label>
                 <input
                   name='editText'
                   type='text'
                   value={editText}
                   onChange={this.onChange}
                 />
+                <label>Time</label>
                 <input
                   name='editTime'
                   type='time'
                   value={editTime}
                   onChange={this.onChange}
                 />
+                <label>Date</label>
                 <input
                   name='editDate'
                   type='date'
                   value={editDate}
                   onChange={this.onChange}
                 />
+                <label>Location</label>
+                <MapSearchBar onPlaceLoaded={this.onPlaceLoaded} />
               </>
             ) : (
               <>
@@ -167,8 +234,28 @@ class AdminEventItem extends Component {
                 <span>
                   <strong>Date:</strong> {event.date}
                 </span>
+                <span>
+                  <strong>Location:</strong> {event.address}
+                </span>
               </>
             )}
+            {/* <MapContainer
+              style={{
+                height: '500px',
+                position: 'relative',
+                marginTop: '20px'
+              }}
+              markerData={{
+                lat: lat,
+                lng: lng,
+                address: address,
+                locationName: locationName
+              }}
+              initialCoords={{
+                lat: event.lat,
+                lng: event.lng
+              }}
+            /> */}
 
             <div className='event-buttons'>
               {/* Buttons */}
