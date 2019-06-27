@@ -66,7 +66,7 @@ class NewsFeedBase extends Component {
         <span className='heading-span underline'>
           <h1 className='heading heading-primary'>News</h1>
           <i
-            className='far fa-plus-square'
+            // className='far fa-plus-square'
             style={this.props.expandState ? { opacity: '1' } : { opacity: '0' }}
             onClick={this.props.expandEventsHandler}
           />

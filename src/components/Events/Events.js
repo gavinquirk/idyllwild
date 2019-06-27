@@ -65,7 +65,7 @@ class EventsBase extends Component {
         <span className='heading-span underline'>
           <h1 className='heading heading-primary'>Events</h1>
           <i
-            className='far fa-plus-square'
+            // className='far fa-plus-square'
             style={this.props.expandState ? { opacity: '0' } : { opacity: '1' }}
             onClick={this.props.expandEventsHandler}
           />
