@@ -32,17 +32,26 @@ class SingleEventBase extends Component {
 
   render() {
     const { event, loading } = this.state;
-
     return (
       <div className='SingleEvent'>
         {loading && <div>Loading ...</div>}
         {event && (
           <>
-            <h1>{event.title}</h1>
+            <h1 className='underline'>{event.title}</h1>
+            <p id='about'>{event.text}</p>
+
             <p>
-              Date: {event.date} Time: {event.time}
+              <span className='line-header'>Date: </span>
+              {event.date}
             </p>
-            <p>{event.text}</p>
+            <p>
+              <span className='line-header'>Time: </span>
+              {event.time}
+            </p>
+            <p>
+              <span className='line-header'>Address: </span>
+              {event.address}
+            </p>
             <MapContainer
               style={{
                 height: '500px',
