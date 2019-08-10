@@ -2,7 +2,9 @@
   /* width: 80%; */
   margin-right: 2%;
 
-  transition: all 1s ease-in-out;
+  /* transition: all 1s ease-in-out; */
+
+  width: 50%;
 }
 
 /* TODO: outsource heading-span to app.css */
@@ -11,14 +13,14 @@
   align-items: center;
   justify-content: space-between;
 
-  transition: all 1s;
+  /* transition: all 1s; */
 }
 
 .NewsFeed .heading-span i {
   font-size: 30px;
   cursor: pointer;
 
-  transition: all 0.5s;
+  /* transition: all 0.5s; */
 }
 
 .NewsFeed .heading-span i:hover {
@@ -42,7 +44,10 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .NewsFeed {
+  /* .NewsFeed {
     grid-column: 1 / 13;
+  } */
+  .NewsFeed {
+    width: 100%;
   }
 }

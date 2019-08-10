@@ -60,7 +60,7 @@ class EventsBase extends Component {
     return (
       <div
         className='Events'
-        style={this.props.expandState ? { width: '50%' } : { width: '50%' }}
+        // style={this.props.expandState ? { width: '50%' } : { width: '50%' }}
       >
         <span className='heading-span underline'>
           <h1 className='heading heading-primary'>Events</h1>

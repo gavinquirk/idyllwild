@@ -1,7 +1,9 @@
 .Events {
   /* width: 20%; */
 
-  transition: all 1s ease-in-out;
+  /* transition: all 1s ease-in-out; */
+
+  width: 50%;
 }
 
 .Events .heading-span {
@@ -14,7 +16,7 @@
   font-size: 30px;
   cursor: pointer;
 
-  transition: all 0.5s;
+  /* transition: all 0.5s; */
 }
 
 .Events .heading-span i:hover {
@@ -36,8 +38,11 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .Events {
+  /* .Events {
     grid-row: 3;
     grid-column: 1 / -1;
+  } */
+  .Events {
+    width: 100%;
   }
 }

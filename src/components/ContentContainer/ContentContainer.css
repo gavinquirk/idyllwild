@@ -4,11 +4,15 @@
 
   width: 100%;
   display: flex;
-
-  transition: all 1s;
 }
 
 .ContentContainer a {
   color: var(--font-light);
   text-decoration: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .ContentContainer {
+    flex-direction: column;
+  }
 }
