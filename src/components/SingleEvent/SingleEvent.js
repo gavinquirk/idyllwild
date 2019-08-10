@@ -77,8 +77,6 @@ class SingleEventBase extends Component {
               <button className='openMapBtn' onClick={this.openMaps}>
                 Open in Google Maps
               </button>
-              {/* <Link to='www.google.com'>Open in Google Maps</Link> */}
-              {/* <a href='www.google.com'>Open in Google Maps</a> */}
             </p>
             <MapContainer
               style={{
