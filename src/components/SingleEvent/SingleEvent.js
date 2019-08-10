@@ -30,6 +30,27 @@ class SingleEventBase extends Component {
       });
   }
 
+  openMaps = () => {
+    const lat = this.state.event.lat;
+    const lng = this.state.event.lng;
+
+    // Double check this conditional logic for apple map
+    // If apple device, open with apple url
+    if (
+      navigator.platform.indexOf('iPhone') !== -1 ||
+      navigator.platform.indexOf('iPad') !== -1 ||
+      navigator.platform.indexOf('iPod') !== -1
+    )
+      window.open(
+        'maps://maps.google.com/maps?daddr=' + lat + ',' + lng + '&amp;ll='
+      );
+    // Else open with standard url, which will handle both pc and android
+    else
+      window.open(
+        'https://maps.google.com/maps?daddr=' + lat + ',' + lng + '&amp;ll='
+      );
+  };
+
   render() {
     const { event, loading } = this.state;
     return (
@@ -51,6 +72,13 @@ class SingleEventBase extends Component {
             <p>
               <span className='line-header'>Address: </span>
               {event.address}
+            </p>
+            <p>
+              <button className='openMapBtn' onClick={this.openMaps}>
+                Open in Google Maps
+              </button>
+              {/* <Link to='www.google.com'>Open in Google Maps</Link> */}
+              {/* <a href='www.google.com'>Open in Google Maps</a> */}
             </p>
             <MapContainer
               style={{
