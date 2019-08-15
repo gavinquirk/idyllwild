@@ -31,10 +31,9 @@ class SingleEventBase extends Component {
   }
 
   openMaps = () => {
-    const lat = this.state.event.lat;
-    const lng = this.state.event.lng;
+    const encodedAddress = encodeURIComponent(this.state.event.address);
 
-    // Double check this conditional logic for apple map
+    // TODO: Double check this conditional logic for apple map
     // If apple device, open with apple url
     if (
       navigator.platform.indexOf('iPhone') !== -1 ||
@@ -42,12 +41,12 @@ class SingleEventBase extends Component {
       navigator.platform.indexOf('iPod') !== -1
     )
       window.open(
-        'maps://maps.google.com/maps?daddr=' + lat + ',' + lng + '&amp;ll='
+        'maps://www.google.com/maps/dir/?api=1&destination=' + encodedAddress
       );
     // Else open with standard url, which will handle both pc and android
     else
       window.open(
-        'https://maps.google.com/maps?daddr=' + lat + ',' + lng + '&amp;ll='
+        'https://www.google.com/maps/dir/?api=1&destination=' + encodedAddress
       );
   };
 
