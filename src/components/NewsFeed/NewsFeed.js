@@ -64,7 +64,7 @@ class NewsFeedBase extends Component {
         // style={this.props.expandState ? { width: '50%' } : { width: '50%' }}
       >
         <span className='heading-span underline'>
-          <h1 className='heading heading-primary'>News</h1>
+          <h1 className='heading heading-primary'>News Feed</h1>
           <i
             // className='far fa-plus-square'
             style={this.props.expandState ? { opacity: '1' } : { opacity: '0' }}
@@ -82,15 +82,28 @@ class NewsFeedBase extends Component {
                     pathname: `/articles/${article.uid}`,
                     state: { article } // Pass article data to details component
                   }}
+                  className='hover'
                 >
-                  <h3 className='heading'>{article.title}</h3>
+                  <h2 className='heading'>{article.title}</h2>
                 </Link>
-                <span className='article--date'>
-                  Posted: {this.formatTime(article.createdAt)}
-                </span>
               </div>
               <div className='article--content'>
                 <p>{article.text}</p>
+                <p className='article--more-details'>
+                  <Link
+                    to={{
+                      pathname: `/articles/${article.uid}`,
+                      state: { article } // Pass event data to details component
+                    }}
+                    className='hover'
+                  >
+                    More details...
+                  </Link>
+                </p>
+
+                <p className='article--date'>
+                  Posted: {this.formatTime(article.createdAt)}
+                </p>
               </div>
             </div>
           ))

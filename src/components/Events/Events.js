@@ -57,8 +57,6 @@ class EventsBase extends Component {
     // Destructure events from state
     const { events } = this.state;
 
-    console.log(events);
-
     return (
       <div
         className='Events'
