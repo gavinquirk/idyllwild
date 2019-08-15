@@ -23,6 +23,14 @@
   transform: translateZ(0) scale(1.1);
 }
 
+.Events .event--content {
+  margin-left: 10px;
+}
+
+.Events .event--content p {
+  margin: 5px 0;
+}
+
 .Events .event {
   margin-bottom: 10px;
 }
@@ -33,8 +41,10 @@
   align-items: flex-end;
 }
 
-.Events .event--date {
+.Events .event--more-details {
   font-size: 12px;
+  opacity: 0.8;
+  font-style: italic;
 }
 
 @media only screen and (max-width: 600px) {

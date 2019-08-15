@@ -57,13 +57,15 @@ class EventsBase extends Component {
     // Destructure events from state
     const { events } = this.state;
 
+    console.log(events);
+
     return (
       <div
         className='Events'
         // style={this.props.expandState ? { width: '50%' } : { width: '50%' }}
       >
         <span className='heading-span underline'>
-          <h1 className='heading heading-primary'>Events</h1>
+          <h1 className='heading heading-primary'>Upcoming Shows</h1>
           <i
             // className='far fa-plus-square'
             style={this.props.expandState ? { opacity: '0' } : { opacity: '1' }}
@@ -81,16 +83,31 @@ class EventsBase extends Component {
                     pathname: `/events/${event.uid}`,
                     state: { event } // Pass event data to details component
                   }}
+                  className='hover'
                 >
-                  <h3 className='heading'>{event.title}</h3>
+                  <h2 className='heading'>{event.title}</h2>
                 </Link>
-
-                <span className='event--date'>
-                  Date: {event.date} at {event.time}
-                </span>
               </div>
+
               <div className='event--content'>
-                <p>{event.text}</p>
+                <p className='event--location'>
+                  Location: {event.locationName}
+                </p>
+                <p className='event--date'>
+                  Date: {event.date} at {event.time}
+                </p>
+                <p className='event--text'>{event.text}</p>
+                <p className='event--more-details'>
+                  <Link
+                    to={{
+                      pathname: `/events/${event.uid}`,
+                      state: { event } // Pass event data to details component
+                    }}
+                    className='hover'
+                  >
+                    More details...
+                  </Link>
+                </p>
               </div>
             </div>
           ))
