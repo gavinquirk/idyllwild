@@ -35,16 +35,16 @@
 
 /* Media Queries */
 
-/* 600 PX */
-@media only screen and (max-width: 600px) {
-  .SingleEvent {
-    grid-column: 1 / -1;
-  }
-}
-
 /* 1100 PX */
 @media only screen and (max-width: 1100px) {
   .SingleEvent {
     grid-column: 2 / 12;
+  }
+}
+
+/* 600 PX */
+@media only screen and (max-width: 600px) {
+  .SingleEvent {
+    grid-column: 1 / -1;
   }
 }

@@ -14,16 +14,16 @@
 
 /* Media Queries */
 
-/* 600 PX */
-@media only screen and (max-width: 600px) {
-  .SingleArticle {
-    grid-column: 1 / -1;
-  }
-}
-
 /* 1100 PX */
 @media only screen and (max-width: 1100px) {
   .SingleArticle {
     grid-column: 2 / 12;
+  }
+}
+
+/* 600 PX */
+@media only screen and (max-width: 600px) {
+  .SingleArticle {
+    grid-column: 1 / -1;
   }
 }
