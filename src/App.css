@@ -24,9 +24,17 @@
 }
 
 .hover:hover {
-  opacity: 0.3;
+  opacity: 0.5;
   cursor: pointer;
 }
+
+/* .button-press {
+  transition-duration: 0.2s;
+}
+
+.button-press:hover {
+  transform: scale(1.05);
+} */
 
 /* Media Queries */
 @media only screen and (max-width: 600px) {

@@ -25,14 +25,20 @@ const Navigation = () => (
 const NavigationAuth = ({ authUser }) => (
   <ul className='NavigationList'>
     <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
+      <Link className='hover' to={ROUTES.LANDING}>
+        Landing
+      </Link>
     </li>
     <li>
-      <Link to={ROUTES.DASHBOARD}>Dashboard</Link>
+      <Link className='hover' to={ROUTES.DASHBOARD}>
+        Dashboard
+      </Link>
     </li>
     {!!authUser.roles[ROLES.ADMIN] && (
       <li>
-        <Link to={ROUTES.ADMIN}>Admin</Link>
+        <Link className='hover' to={ROUTES.ADMIN}>
+          Admin
+        </Link>
       </li>
     )}
     <li>
