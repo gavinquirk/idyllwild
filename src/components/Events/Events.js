@@ -7,7 +7,8 @@ import './Events.css';
 class EventsBase extends Component {
   state = {
     events: [],
-    loading: false
+    loading: false,
+    limit: 10
   };
 
   componentDidMount() {
@@ -33,6 +34,7 @@ class EventsBase extends Component {
       .orderByChild('disabled') // Filter for articles which are not disabled
       .equalTo(false || null)
       // .orderByChild('createdAt')
+      .limitToFirst(this.state.limit)
       .on('value', snapshot => {
         const eventObject = snapshot.val();
 

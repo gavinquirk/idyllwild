@@ -7,7 +7,8 @@ import './NewsFeed.css';
 class NewsFeedBase extends Component {
   state = {
     articles: [],
-    loading: false
+    loading: false,
+    limit: 10
   };
 
   componentDidMount() {
@@ -32,7 +33,7 @@ class NewsFeedBase extends Component {
       .orderByChild('disabled') // Filter for articles which are not disabled
       .equalTo(false || null)
       // .orderByChild('createdAt')
-      // .limitToLast(this.state.limit)
+      .limitToFirst(this.state.limit)
       .once('value', snapshot => {
         const articleObject = snapshot.val();
 
