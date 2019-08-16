@@ -47,6 +47,11 @@
   font-style: italic;
 }
 
+.Events .posted-date {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
 @media only screen and (max-width: 600px) {
   /* .Events {
     grid-row: 3;

@@ -30,7 +30,9 @@ class EventsBase extends Component {
     // Listen for event data
     this.props.firebase
       .events()
-      .orderByChild('createdAt')
+      .orderByChild('disabled') // Filter for articles which are not disabled
+      .equalTo(false || null)
+      // .orderByChild('createdAt')
       .on('value', snapshot => {
         const eventObject = snapshot.val();
 
@@ -105,6 +107,9 @@ class EventsBase extends Component {
                   >
                     More details...
                   </Link>
+                </p>
+                <p className='posted-date'>
+                  Posted: {this.formatTime(event.createdAt)}
                 </p>
               </div>
             </div>

@@ -101,7 +101,7 @@ class NewsFeedBase extends Component {
                   </Link>
                 </p>
 
-                <p className='article--date'>
+                <p className='posted-date'>
                   Posted: {this.formatTime(article.createdAt)}
                 </p>
               </div>

@@ -46,7 +46,7 @@
   margin: 5px 0;
 }
 
-.NewsFeed .article--date {
+.NewsFeed .posted-date {
   font-size: 12px;
   opacity: 0.8;
 }
