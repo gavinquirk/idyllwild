@@ -26,8 +26,8 @@
 } */
 
 /* 600 PX */
-/* @media only screen and (max-width: 600px) {
-  .SingleEvent {
+@media only screen and (max-width: 600px) {
+  .AdminPage {
     grid-column: 1 / -1;
   }
-} */
+}
