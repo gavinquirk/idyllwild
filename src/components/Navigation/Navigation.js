@@ -30,6 +30,11 @@ const NavigationAuth = ({ authUser }) => (
       </Link>
     </li>
     <li>
+      <Link className='hover' to={ROUTES.EVENTS}>
+        Shows
+      </Link>
+    </li>
+    <li>
       <Link className='hover' to={ROUTES.DASHBOARD}>
         Dashboard
       </Link>
@@ -52,6 +57,11 @@ const NavigationNonAuth = () => (
     <li>
       <Link to={ROUTES.LANDING} className='hover'>
         Home
+      </Link>
+    </li>
+    <li>
+      <Link className='hover' to={ROUTES.EVENTS}>
+        Shows
       </Link>
     </li>
     {/* <li>

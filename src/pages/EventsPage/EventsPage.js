@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+
 import { Link } from 'react-router-dom';
-import { withFirebase } from '../Firebase';
 
-import './Events.css';
+import { withFirebase } from '../../components/Firebase';
 
-class EventsBase extends Component {
+import './EventsPage.css';
+
+class EventsPageBase extends Component {
   state = {
     events: [],
     loading: false,
@@ -27,6 +29,11 @@ class EventsBase extends Component {
   };
 
   onListenForEvents() {
+    // If event state is passed, don't query for user
+    if (this.state.events.length > 0) {
+      return;
+    }
+
     this.setState({ loading: true });
     // Listen for event data
     this.props.firebase
@@ -62,23 +69,8 @@ class EventsBase extends Component {
     const { events } = this.state;
 
     return (
-      <div
-        className='Events'
-        // style={this.props.expandState ? { width: '50%' } : { width: '50%' }}
-      >
-        <span className='heading-span underline'>
-          <Link
-            to={{
-              pathname: `/events`,
-              state: { events } // Pass event data
-            }}
-            className='hover'
-          >
-            <h1 className='heading heading-primary'>Upcoming Shows</h1>
-          </Link>
-        </span>
-        {/* Events Section */}
-
+      <div className='EventsPage'>
+        <h1 className='heading heading-primary underline'>Upcoming Shows</h1>
         {events.length >= 1 ? (
           events.map(event => (
             <div key={event.uid} className='event'>
@@ -127,6 +119,6 @@ class EventsBase extends Component {
   }
 }
 
-const Events = withFirebase(EventsBase);
+const EventsPage = withFirebase(EventsPageBase);
 
-export default Events;
+export default EventsPage;
