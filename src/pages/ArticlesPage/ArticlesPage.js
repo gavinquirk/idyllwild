@@ -10,7 +10,7 @@ class ArticlesPageBase extends Component {
   state = {
     articles: [],
     loading: false,
-    limit: 10
+    limit: 25
   };
 
   componentDidMount() {

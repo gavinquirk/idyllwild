@@ -10,7 +10,7 @@ class EventsPageBase extends Component {
   state = {
     events: [],
     loading: false,
-    limit: 10
+    limit: 25
   };
 
   componentDidMount() {

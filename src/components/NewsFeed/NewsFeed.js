@@ -8,7 +8,7 @@ class NewsFeedBase extends Component {
   state = {
     articles: [],
     loading: false,
-    limit: 10
+    limit: 5
   };
 
   componentDidMount() {
