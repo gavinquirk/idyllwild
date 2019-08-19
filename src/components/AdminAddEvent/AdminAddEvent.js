@@ -14,6 +14,8 @@ import {
 import * as ROLES from '../../constants/roles';
 import * as ROUTES from '../../constants/routes';
 
+import { formatTime } from '../../utilities/helpers';
+
 import './AdminAddEvent.css';
 
 class AdminAddEventBase extends Component {
@@ -42,6 +44,9 @@ class AdminAddEventBase extends Component {
     const formattedDate = moment(this.state.date, 'YYYY - MM - DD').format(
       'dddd, MMMM Do, YYYY'
     );
+
+    const formattedTime = formatTime(this.state.time);
+
     // Post form data to events array in DB
     this.props.firebase
       .events()
@@ -51,7 +56,7 @@ class AdminAddEventBase extends Component {
         lat: this.state.lat,
         lng: this.state.lng,
         date: formattedDate,
-        time: this.state.time,
+        time: formattedTime,
         address: this.state.address,
         locationName: this.state.locationName,
         userId: authUser.uid,
@@ -81,7 +86,7 @@ class AdminAddEventBase extends Component {
   };
 
   render() {
-    const initialCoords = { lat: 33.6846, lng: -117.8265 };
+    const initialCoords = { lat: 33.6846, lng: -117.8265 }; // Irvine, CA
 
     return (
       <AuthUserContext.Consumer>
