@@ -60,17 +60,17 @@ class NewsFeedBase extends Component {
     const { articles } = this.state;
 
     return (
-      <div
-        className='NewsFeed'
-        // style={this.props.expandState ? { width: '50%' } : { width: '50%' }}
-      >
+      <div className='NewsFeed'>
         <span className='heading-span underline'>
-          <h1 className='heading heading-primary'>News Feed</h1>
-          <i
-            // className='far fa-plus-square'
-            style={this.props.expandState ? { opacity: '1' } : { opacity: '0' }}
-            onClick={this.props.expandEventsHandler}
-          />
+          <Link
+            to={{
+              pathname: `/articles`,
+              state: { articles } // Pass article data
+            }}
+            className='hover'
+          >
+            <h1 className='heading heading-primary'>News Feed</h1>
+          </Link>
         </span>
         {/* Articles Section */}
 

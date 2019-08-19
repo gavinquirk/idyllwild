@@ -30,6 +30,11 @@ const NavigationAuth = ({ authUser }) => (
       </Link>
     </li>
     <li>
+      <Link className='hover' to={ROUTES.ARTICLES}>
+        News
+      </Link>
+    </li>
+    <li>
       <Link className='hover' to={ROUTES.EVENTS}>
         Shows
       </Link>
@@ -60,10 +65,16 @@ const NavigationNonAuth = () => (
       </Link>
     </li>
     <li>
+      <Link className='hover' to={ROUTES.ARTICLES}>
+        News
+      </Link>
+    </li>
+    <li>
       <Link className='hover' to={ROUTES.EVENTS}>
         Shows
       </Link>
     </li>
+
     {/* <li>
       <Link to={ROUTES.SIGN_IN} className='hover'>
         Sign In

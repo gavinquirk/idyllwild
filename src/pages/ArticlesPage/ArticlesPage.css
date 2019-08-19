@@ -1,0 +1,76 @@
+.ArticlesPage {
+  margin-right: 2%;
+
+  grid-column: 4 / 10;
+}
+
+.ArticlesPage a {
+  color: var(--font-light);
+  text-decoration: none;
+}
+
+/* TODO: outsource heading-span to app.css */
+.ArticlesPage .heading-span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* transition: all 1s; */
+}
+
+.ArticlesPage .heading-span i {
+  font-size: 30px;
+  cursor: pointer;
+
+  /* transition: all 0.5s; */
+}
+
+.ArticlesPage .heading-span i:hover {
+  /* animation: pulsate 1s linear infinite; */
+  transform: translateZ(0) scale(1.1);
+}
+
+.ArticlesPage .article {
+  margin-bottom: 10px;
+}
+
+.ArticlesPage .article--heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.ArticlesPage .article--content {
+  margin-left: 10px;
+}
+
+.ArticlesPage .article--content p {
+  margin: 5px 0;
+}
+
+.ArticlesPage .posted-date {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.ArticlesPage .article--more-details {
+  font-size: 12px;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Media Queries */
+
+/* 1100 PX */
+@media only screen and (max-width: 1100px) {
+  .ArticlesPage {
+    grid-column: 2 / 12;
+  }
+}
+
+/* 600 PX */
+@media only screen and (max-width: 600px) {
+  .ArticlesPage {
+    grid-column: 1 / -1;
+  }
+}
