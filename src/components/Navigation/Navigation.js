@@ -75,11 +75,11 @@ const NavigationNonAuth = () => (
       </Link>
     </li>
 
-    {/* <li>
+    <li>
       <Link to={ROUTES.SIGN_IN} className='hover'>
         Sign In
       </Link>
-    </li> */}
+    </li>
   </ul>
 );
 

@@ -14,7 +14,7 @@ const SignInPage = () => (
     <div className='SignInPage-container'>
       <h1 className='heading heading-primary underline'>Sign In</h1>
       <SignInForm />
-      <SignUpLink />
+      {/* <SignUpLink /> */}
       <PasswordForgetLink />
     </div>
   </div>
