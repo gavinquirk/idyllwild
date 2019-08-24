@@ -1,13 +1,13 @@
 .SignUpPage {
   display: flex;
   flex-direction: column;
-  grid-column: 1 / -1;
+  grid-column: 5 / 9;
 
   align-items: center;
 }
 
 .SignUpPage-container {
-  width: 400px;
+  width: 100%;
   text-align: center;
 
   display: flex;
@@ -66,4 +66,20 @@
 .SignUpLink a {
   text-decoration: none;
   color: inherit;
+}
+
+/* Media Queries */
+
+/* 1100 PX */
+@media only screen and (max-width: 1100px) {
+  .SignUpPage {
+    grid-column: 4 / 10;
+  }
+}
+
+/* 600 PX */
+@media only screen and (max-width: 600px) {
+  .SignUpPage {
+    grid-column: 1 / -1;
+  }
 }
