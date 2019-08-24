@@ -11,7 +11,7 @@ export function formatTime(time) {
     hours -= 12;
   } else if (hours < 12) {
     meridian = 'AM';
-    if (hours == 0) {
+    if (hours === 0) {
       hours = 12;
     }
   } else {
