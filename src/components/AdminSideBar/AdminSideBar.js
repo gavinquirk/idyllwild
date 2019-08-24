@@ -10,7 +10,7 @@ class AdminSideBar extends Component {
   render() {
     return (
       <div className='AdminSideBar'>
-        <h1 className='heading'>Toolbar</h1>
+        <h1 className='heading'>Tools</h1>
         <ul className='AdminSideBarList'>
           <li>
             <h4>Users</h4>
