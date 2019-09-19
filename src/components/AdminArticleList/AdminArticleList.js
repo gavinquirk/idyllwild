@@ -35,7 +35,7 @@ class AdminArticleList extends Component {
 
     return (
       <div className='AdminArticleList'>
-        <h1 className='heading'>articles</h1>
+        <h1 className='heading'>Articles</h1>
         {loading && <div>Loading ...</div>}
         <ul>
           {articles.map(article => (
