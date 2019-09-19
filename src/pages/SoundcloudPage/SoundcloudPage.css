@@ -1,6 +1,7 @@
 .SoundcloudPage {
   /* grid-column: 4 / 10; */
   grid-column: 1 / -1;
+  height: 70vh;
 }
 
 /* 1100 PX */
