@@ -15,6 +15,7 @@ import SingleEvent from './components/SingleEvent/SingleEvent';
 import SingleArticle from './components/SingleArticle/SingleArticle';
 import EventsPage from './pages/EventsPage/EventsPage';
 import ArticlesPage from './pages/ArticlesPage/ArticlesPage';
+import SoundcloudPage from './pages/SoundcloudPage/SoundcloudPage';
 
 // Admin Components
 import AdminPage from './pages/AdminPage/AdminPage';
@@ -42,6 +43,7 @@ const App = () => (
         <Route exact path={ROUTES.ARTICLES} component={ArticlesPage} />
         <Route path={ROUTES.SINGLE_EVENT} component={SingleEvent} />
         <Route path={ROUTES.SINGLE_ARTICLE} component={SingleArticle} />
+        <Route path={ROUTES.SOUNDCLOUD_PAGE} component={SoundcloudPage} />
 
         {/* Admin Routes */}
         {/* TODO: Why must these admin routes be declared in app.js and not only in admin page? */}

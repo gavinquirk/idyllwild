@@ -9,6 +9,7 @@ export const SINGLE_EVENT = '/events/:id';
 export const SINGLE_ARTICLE = '/articles/:id';
 export const EVENTS = '/events';
 export const ARTICLES = '/articles';
+export const SOUNDCLOUD_PAGE = '/music';
 
 // Admin routes to be nested on admin page
 export const ADMIN_USER_LIST = '/admin/users';
