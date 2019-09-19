@@ -40,6 +40,11 @@ const NavigationAuth = ({ authUser }) => (
       </Link>
     </li>
     <li>
+      <Link className='hover' to={ROUTES.SOUNDCLOUD_PAGE}>
+        Music
+      </Link>
+    </li>
+    <li>
       <Link className='hover' to={ROUTES.DASHBOARD}>
         Dashboard
       </Link>
@@ -74,7 +79,11 @@ const NavigationNonAuth = () => (
         Shows
       </Link>
     </li>
-
+    <li>
+      <Link className='hover' to={ROUTES.SOUNDCLOUD_PAGE}>
+        Music
+      </Link>
+    </li>
     <li>
       <Link to={ROUTES.SIGN_IN} className='hover'>
         Sign In

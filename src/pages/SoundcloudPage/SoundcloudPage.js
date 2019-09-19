@@ -1,6 +1,8 @@
 import React from 'react';
 import './SoundcloudPage.css';
 
+// The URL for this iframe widget must be changed to the idyllwild soundcloud id
+
 export default function SoundcloudPage() {
   return (
     <div className='SoundcloudPage'>
