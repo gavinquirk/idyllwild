@@ -117,11 +117,13 @@ class AdminArticleItem extends Component {
             {editMode ? (
               <>
                 <input
+                  className='form-input'
                   type='text'
                   value={editTitle}
                   onChange={this.onChangeEditTitle}
                 />
-                <input
+                <textarea
+                  className='form-input'
                   type='text'
                   value={editText}
                   onChange={this.onChangeEditText}
@@ -143,8 +145,10 @@ class AdminArticleItem extends Component {
               {/* Edit buttons conditional rendering */}
               {editMode ? (
                 <span>
-                  <button onClick={this.onSaveArticle}>Save</button>
-                  <button onClick={this.onToggleEditMode}>Reset</button>
+                  <button onClick={this.onSaveArticle} className='save-button'>
+                    Save
+                  </button>
+                  <button onClick={this.onToggleEditMode}>Cancel</button>
                 </span>
               ) : (
                 <button onClick={this.onToggleEditMode}>Edit</button>
