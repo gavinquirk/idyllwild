@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+
 import { Link } from 'react-router-dom';
-import { withFirebase } from '../Firebase';
 
-import './NewsFeed.css';
+import { withFirebase } from '../../components/Firebase';
 
-class NewsFeedBase extends Component {
+import './ArticlesPage.css';
+
+class ArticlesPageBase extends Component {
   state = {
     articles: [],
     loading: false,
-    limit: 5
+    limit: 25
   };
 
   componentDidMount() {
@@ -27,24 +29,31 @@ class NewsFeedBase extends Component {
   };
 
   onListenForArticles() {
+    // If event article is passed, don't query db
+    if (this.state.articles.length > 0) {
+      return;
+    }
+
     this.setState({ loading: true });
+    // Listen for event data
     this.props.firebase
       .articles()
       .orderByChild('disabled') // Filter for articles which are not disabled
       .equalTo(false || null)
       // .orderByChild('createdAt')
       .limitToFirst(this.state.limit)
-      .once('value', snapshot => {
+      .on('value', snapshot => {
         const articleObject = snapshot.val();
 
         if (articleObject) {
-          // Convert articleObject into array
+          // Convert eventObject into array
           const articleList = Object.keys(articleObject)
             .map(key => ({
               ...articleObject[key],
               uid: key
             }))
             .reverse();
+          // Send event data to state
           this.setState({
             articles: articleList,
             loading: false
@@ -60,17 +69,12 @@ class NewsFeedBase extends Component {
     const { articles } = this.state;
 
     return (
-      <div className='NewsFeed'>
+      <div
+        className='ArticlesPage'
+        // style={this.props.expandState ? { width: '50%' } : { width: '50%' }}
+      >
         <span className='heading-span underline'>
-          <Link
-            to={{
-              pathname: `/articles`,
-              state: { articles } // Pass article data
-            }}
-            className='hover'
-          >
-            <h1 className='heading heading-primary'>News Feed</h1>
-          </Link>
+          <h1 className='heading heading-primary'>News Feed</h1>
         </span>
         {/* Articles Section */}
 
@@ -116,6 +120,6 @@ class NewsFeedBase extends Component {
   }
 }
 
-const NewsFeed = withFirebase(NewsFeedBase);
+const ArticlesPage = withFirebase(ArticlesPageBase);
 
-export default NewsFeed;
+export default ArticlesPage;

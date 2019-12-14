@@ -25,14 +25,30 @@ const Navigation = () => (
 const NavigationAuth = ({ authUser }) => (
   <ul className='NavigationList'>
     <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
+      <Link className='hover' to={ROUTES.LANDING}>
+        Home
+      </Link>
     </li>
     <li>
-      <Link to={ROUTES.DASHBOARD}>Dashboard</Link>
+      <Link className='hover' to={ROUTES.ARTICLES}>
+        News
+      </Link>
+    </li>
+    <li>
+      <Link className='hover' to={ROUTES.EVENTS}>
+        Shows
+      </Link>
+    </li>
+    <li>
+      <Link className='hover' to={ROUTES.DASHBOARD}>
+        Dashboard
+      </Link>
     </li>
     {!!authUser.roles[ROLES.ADMIN] && (
       <li>
-        <Link to={ROUTES.ADMIN}>Admin</Link>
+        <Link className='hover' to={ROUTES.ADMIN}>
+          Admin
+        </Link>
       </li>
     )}
     <li>
@@ -44,10 +60,25 @@ const NavigationAuth = ({ authUser }) => (
 const NavigationNonAuth = () => (
   <ul className='NavigationList'>
     <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
+      <Link to={ROUTES.LANDING} className='hover'>
+        Home
+      </Link>
     </li>
     <li>
-      <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+      <Link className='hover' to={ROUTES.ARTICLES}>
+        News
+      </Link>
+    </li>
+    <li>
+      <Link className='hover' to={ROUTES.EVENTS}>
+        Shows
+      </Link>
+    </li>
+
+    <li>
+      <Link to={ROUTES.SIGN_IN} className='hover'>
+        Sign In
+      </Link>
     </li>
   </ul>
 );

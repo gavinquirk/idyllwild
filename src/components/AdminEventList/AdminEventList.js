@@ -35,7 +35,7 @@ class AdminEventList extends Component {
 
     return (
       <div className='AdminEventList'>
-        <h1 className='heading'>events</h1>
+        <h1 className='heading'>Events</h1>
         {loading && <div>Loading ...</div>}
         <ul>
           {events.map(event => (

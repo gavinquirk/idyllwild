@@ -36,7 +36,7 @@ class SingleArticleBase extends Component {
         {loading && <div>Loading ...</div>}
         {article && (
           <>
-            <h1>{article.title}</h1>
+            <h1 className='underline'>{article.title}</h1>
             <p>{article.text}</p>
           </>
         )}

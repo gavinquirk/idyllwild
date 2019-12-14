@@ -7,6 +7,8 @@ export const PASSWORD_FORGET = '/pw-forget';
 export const PASSWORD_CHANGE = '/pw-change';
 export const SINGLE_EVENT = '/events/:id';
 export const SINGLE_ARTICLE = '/articles/:id';
+export const EVENTS = '/events';
+export const ARTICLES = '/articles';
 
 // Admin routes to be nested on admin page
 export const ADMIN_USER_LIST = '/admin/users';

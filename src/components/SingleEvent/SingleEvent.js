@@ -30,19 +30,53 @@ class SingleEventBase extends Component {
       });
   }
 
+  openMaps = () => {
+    const encodedAddress = encodeURIComponent(this.state.event.address);
+
+    // TODO: Double check this conditional logic for apple map
+    // If apple device, open with apple url
+    if (
+      navigator.platform.indexOf('iPhone') !== -1 ||
+      navigator.platform.indexOf('iPad') !== -1 ||
+      navigator.platform.indexOf('iPod') !== -1
+    )
+      window.open(
+        'maps://www.google.com/maps/dir/?api=1&destination=' + encodedAddress
+      );
+    // Else open with standard url, which will handle both pc and android
+    else
+      window.open(
+        'https://www.google.com/maps/dir/?api=1&destination=' + encodedAddress
+      );
+  };
+
   render() {
     const { event, loading } = this.state;
-
     return (
       <div className='SingleEvent'>
         {loading && <div>Loading ...</div>}
         {event && (
           <>
-            <h1>{event.title}</h1>
+            <h1 className='underline'>{event.title}</h1>
+            <p id='about'>{event.text}</p>
+
             <p>
-              Date: {event.date} Time: {event.time}
+              <span className='line-header'>Date: </span>
+              {event.date}
             </p>
-            <p>{event.text}</p>
+            <p>
+              <span className='line-header'>Time: </span>
+              {event.time}
+            </p>
+            <p>
+              <span className='line-header'>Address: </span>
+              {event.address}
+            </p>
+            <p>
+              <button className='openMapBtn' onClick={this.openMaps}>
+                Open in Google Maps
+              </button>
+            </p>
             <MapContainer
               style={{
                 height: '500px',

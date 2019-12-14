@@ -6,3 +6,7 @@
   color: inherit;
   cursor: pointer;
 }
+
+.SignOutButton:hover {
+  opacity: 0.7;
+}
